@@ -211,6 +211,7 @@
     <Compile Include="Areas\Permess\Models\SIDocumentDetails.cs" />
     <Compile Include="Areas\Permess\Models\SIProductDetails.cs" />
     <Compile Include="Areas\Permess\Models\SRIProductDetails.cs" />
+    <Compile Include="Areas\Permess\NewFolder1\Class.cs" />
     <Compile Include="Areas\Permess\PermessAreaRegistration.cs" />
     <Compile Include="Areas\Permess\PlainModels\ResponseCashDetails.cs" />
     <Compile Include="Areas\Permess\PlainModels\ResponseGoodsReport.cs" />
@@ -7304,7 +7305,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Permess\NewFolder1\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
