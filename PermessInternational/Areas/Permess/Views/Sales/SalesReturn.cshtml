@@ -1,0 +1,76 @@
+﻿<section class="content">
+    <div class="row">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">Sales Return Info</h3>
+            </div>
+            <div class="box-body">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#firstTab">Index</a></li>
+                    <li><a data-toggle="tab" href="#secondTab">Add New</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div id="firstTab" class="tab-pane fade in active">@Html.Action("SalesReturns")</div>
+                    <div id="secondTab" class="tab-pane fade in">@Html.Action("AddSalesReturn")</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section Scripts{
+    <script src="~/Content/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(function () {
+                $("#sRIDate").datepicker({
+                    format: "yyyy-mm-dd"
+                });
+            });
+            $("#btnNew").click(function () {
+                var productSIcode = $("#productSIcode").val();
+                var sRICode = $("#sRICode").val();
+                var sRIDate = $("#sRIDate").val();
+                var productId = $("#productId").val();
+                var articleId = $("#articleId").val();
+                var altArticle = $("#altArticle").val();
+                var widthId = $("#widthId").val();
+                var constructionId = $("#constructionId").val();
+                var softnessId = $("#softnessId").val();
+                var sourceId = $("#sourceId").val();
+                var colorId = $("#colorId").val();
+                var lenghtId = $("#lenghtId").val();
+                var orderQuantity = $("#orderQuantity").val();
+                $('#dvLoader').show();
+                $.ajax({
+                    url: "/Sales/AddSalesReturn",
+                    type: "POST",
+                    data: JSON.stringify({
+                        "SICode": productSIcode,
+                        "SRICode": sRICode,
+                        "SRIDate": sRIDate,
+                        "ProductId": productId,
+                        "ArticleId": articleId,
+                        "AltArticle": altArticle,
+                        "WidthId": widthId,
+                        "ConstructionId": constructionId,
+                        "SoftnessId": softnessId,
+                        "SourceId": sourceId,
+                        "ColorId": colorId,
+                        "LenghtId": lenghtId,
+                        "OrderQuantity": orderQuantity,
+                    }),
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (json) {
+                        $('#dvLoader').hide();
+                        if (json.isRedirect) {
+                            window.location.href = json.redirectUrl;
+                        }
+                    }
+                });
+            });
+
+        });
+
+    </script>
+}

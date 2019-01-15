@@ -1,0 +1,194 @@
+﻿@model PermessInternational.Areas.Permess.ViewModels.ProductSettingViewModels
+@{
+    Layout = null;
+}
+
+<section class="content-header">
+    <h1>
+        Product Index
+        <small>preview of product index</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table class="table table-bordered table-responsive">
+                        <thead>
+                            <tr>
+                                <th style="width: 10px">#</th>
+                                <th>Article</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                var sl = 0;
+                                var sl2 = 0;
+                                var sl3 = 0;
+                                var sl4 = 0;
+                                var sl5 = 0;
+                                var sl6 = 0;
+                                var sl7 = 0;
+                            }
+                            @foreach (var item in Model.ProductSettings)
+                            {
+                                sl++;
+                                <tr>
+                                    <td>@sl</td>
+                                    <td>@item.ItemName</td>
+                                    <td>@item.Description</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="box-body">
+                    <table class="table table-bordered table-responsive">
+                        <thead>
+                            <tr>
+                                <th style="width: 10px">#</th>
+                                <th>Construction</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.ConstructionProductSettings)
+                            {
+                                sl2++;
+                                <tr>
+                                    <td>@sl2</td>
+                                    <td>@item.ItemName</td>
+                                    <td>@item.Description</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="box-body">
+                    <table class="table table-bordered table-responsive">
+                        <thead>
+                            <tr>
+                                <th style="width: 10px">#</th>
+                                <th>Width</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.WidthProductSettings)
+                            {
+                                sl3++;
+                                <tr>
+                                    <td>@sl3</td>
+                                    <td>@item.ItemName</td>
+                                    <td>@item.Description</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="box-body">
+                    <table class="table table-bordered table-responsive">
+                        <thead>
+                            <tr>
+                                <th style="width: 10px">#</th>
+                                <th>Color</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.ColorProductSettings)
+                            {
+                                sl7++;
+                                <tr>
+                                    <td>@sl7</td>
+                                    <td>@item.ItemName</td>
+                                    <td>@item.Description</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="box-body">
+                    <table class="table table-bordered table-responsive">
+                        <thead>
+                            <tr>
+                                <th style="width: 10px">#</th>
+                                <th>Softness</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.SoftnessProductSettings
+)
+                            {
+                                sl4++;
+                                <tr>
+                                    <td>@sl4</td>
+                                    <td>@item.ItemName</td>
+                                    <td>@item.Description</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="box-body">
+                    <table class="table table-bordered table-responsive">
+                        <thead>
+                            <tr>
+                                <th style="width: 10px">#</th>
+                                <th>Source</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.SourceProductSettings
+)
+                            {
+                                sl5++;
+                                <tr>
+                                    <td>@sl5</td>
+                                    <td>@item.ItemName</td>
+                                    <td>@item.Description</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="box-body">
+                    <table class="table table-bordered table-responsive">
+                        <thead>
+                            <tr>
+                                <th style="width: 10px">#</th>
+                                <th>Category</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.CategoryProductSettings)
+                            {
+                                sl6++;
+                                <tr>
+                                    <td>@sl6</td>
+                                    <td>@item.ItemName</td>
+                                    <td>@item.Description</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+
+    </div>
+</section>

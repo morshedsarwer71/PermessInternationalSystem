@@ -10,21 +10,13 @@ namespace PermessInternational.Controllers
     {
         public ActionResult Index()
         {
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            var concernId = Convert.ToInt32(Session["ConcernId"]);
+            var userId = Convert.ToInt32(Session["UserId"]);
+            if (concernId > 0 && userId > 0)
+            {
+                return RedirectToAction("Index", "GlobalData", new { Area = "Global" });
+            }
+            return RedirectToAction("Index", "GlobalData", new { Area = "Global" });
         }
     }
 }

@@ -1,0 +1,57 @@
+﻿@{ Layout = null;}
+<section class="content-header">
+    <h1>
+        Add Machine
+        <small>adding new machine information</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#" )"><i class="fa fa-dashboard"></i> Home</a></li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div id="dvLoader" class="LoadingDiv" style="display: none;margin-top:150px;">
+        <center>
+            <img src="~/Content/img/ajax-loader.gif" alt="Loading" />
+        </center>
+    </div>
+    <div class="row">
+        <div class="box">
+            <div class="box-body">
+                <div class="col-md-6 col-sm-8">
+                    @using (Html.BeginForm("AddMachinePurchase", "Sales",FormMethod.Post))
+                    {
+                        <div class="form-group">
+                            <label class="col-form-label">Machine Name</label>
+                            <input name="MachineName" type="text" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label">Specification</label>
+                            <input name="Specification" type="text" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label">Quantity</label>
+                            <input name="Quantity" type="text" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label">Retension</label>
+                            <input name="Retension" type="text" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label">Price</label>
+                            <input name="Price" type="text" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label">Description</label>
+                            <textarea class="form-control" name="Description"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button  type="submit" value="submit" class="btn btn-info">SUBMIT</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

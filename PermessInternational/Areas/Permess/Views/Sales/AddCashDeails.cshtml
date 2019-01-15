@@ -1,0 +1,95 @@
+﻿@model PermessInternational.Areas.Permess.ViewModels.ProductSettingViewModels
+<section class="content-header">
+    <h1>
+        Add Cash Details
+        <small>adding new cash information</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#" )"><i class="fa fa-dashboard"></i> Home</a></li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div id="dvLoader" class="LoadingDiv" style="display: none;margin-top:150px;">
+        <center>
+            <img src="~/Content/img/ajax-loader.gif" alt="Loading" />
+        </center>
+    </div>
+    <div class="row">
+        <div class="box" id="cashDetails">
+            <div class="box-body">
+                <div class="col-md-6 col-sm-6">
+                    @using (Html.BeginForm("AddCashDeails", "Sales", FormMethod.Post))
+                    {
+                        <div class="form-group">
+                            <label class="col-form-label">P.I Code</label>
+                            <input value="@ViewBag.PI" readonly="readonly" name="SICode" type="text" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label">Bill Number</label>
+                            <input name="BillNo" type="text" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label">Billing Date</label>
+                            <input name="BillingDate" type="text" id="billingDate" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label">Total Received</label>
+                            <input class="form-control" name="TotalReceived" />
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label">Chalan Info</label>
+                            <input class="form-control" name="ChalanInfo" />
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label">From Destination</label>
+                            <select class="form-control" name="FromDestination">
+                                @foreach (var item in Model.Regions)
+                                {
+                                    <option value="@item.RegionId">@item.RegionName</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label">To Destination</label>
+                            <select class="form-control" name="ToDestination">
+                                @foreach (var item in Model.Regions)
+                                {
+                                    <option value="@item.RegionId">@item.RegionName</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label">USD</label>
+                            <input class="form-control" name="USD" />
+
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label">Comission USD</label>
+                            <input class="form-control" name="ComissionUSD" />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-form-label">Description</label>
+                            <textarea class="form-control" name="description"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button id="btnSave" type="submit" value="submit" class="btn btn-info">SUBMIT</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section Scripts{
+    <script src="~/Content/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script>
+        $(function () {
+                $("#billingDate").datepicker({
+                    format: "yyyy-mm-dd"
+                });
+        });
+    </script>
+}

@@ -1,0 +1,121 @@
+﻿@model PermessInternational.Areas.Permess.ViewModels.ProductSettingViewModels
+<section class="content-header">
+    <h1>
+        Add L.C Details
+        <small>adding new l.c information</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#" )"><i class="fa fa-dashboard"></i> Home</a></li>
+    </ol>
+</section>
+<section class="content">
+    <div class="box" id="lcStatement">
+        <div class="box-body">
+            <div class="col-md-6 col-sm-6">
+                @using (Html.BeginForm("AddLCStatement", "Sales", FormMethod.Post))
+                {
+                    <div class="form-group">
+                        <label class="col-form-label">P.I Code</label>
+                        <input value="@ViewBag.PI" readonly="readonly" name="SICode" type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">L.C Number</label>
+                        <input name="LCNumber" type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">L.C Date</label>
+                        <input name="LCDate" type="text" id="lCDate" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Expiraion Date</label>
+                        <input class="form-control" id="expiraionDate" name="ExpiraionDate" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Realise Value</label>
+                        <input class="form-control" name="RealiseValue" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">L.C Status</label>
+                        <select class="form-control" name="LCStatus">
+                            <option value="1">Yes</option>
+                            <option value="2">No</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">HS Code</label>
+                        <input class="form-control" name="HSCode" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">File Number</label>
+                        <input class="form-control" name="FileNo" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Shipment Date</label>
+                        <input class="form-control" id="shipmentDate" name="ShipmentDate" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Tenor</label>
+                        <select class="form-control" name="Tenor">
+                            <option value="1">60 Days</option>
+                            <option value="2">90 Days</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Value</label>
+                        <input class="form-control" name="Value" />
+
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Comission</label>
+                        <input class="form-control" name="Comission" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Bank Name</label>
+                        <input class="form-control" name="BankName" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Bank Submission Date</label>
+                        <input class="form-control" id="bankSubDate" name="BankSubDate" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Party Name</label>
+                        <input class="form-control" name="PartyName" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Payment Clause</label>
+                        <select class="form-control" name="PaymentClause">
+                            <option value="1">BDT</option>
+                            <option value="2">USD</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Description</label>
+                        <textarea class="form-control" name="description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button id="btnSave" type="submit" value="submit" class="btn btn-info">SUBMIT</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+@section Scripts{
+    <script src="~/Content/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script>
+        $(function () {
+            $("#bankSubDate").datepicker({
+                format: "yyyy-mm-dd"
+            });
+            $("#shipmentDate").datepicker({
+                format: "yyyy-mm-dd"
+            });
+            $("#expiraionDate").datepicker({
+                format: "yyyy-mm-dd"
+            });
+            $("#lCDate").datepicker({
+                format: "yyyy-mm-dd"
+            });
+        });
+    </script>
+}

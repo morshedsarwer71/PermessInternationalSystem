@@ -1,0 +1,66 @@
+﻿@model PermessInternational.Areas.Permess.ViewModels.ResponseStocksViewModels
+<section class="content-header">
+    <h1>
+        Stock
+        <small>preview of raw materials stocks</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="col-md-8 col-sm-8">
+                        <table class="table table-bordered table-responsive">
+                            <thead>
+                                <tr>
+                                    <th style="width: 10px">#</th>
+                                    <th>Product Code</th>
+                                    <th>Product Name</th>
+                                    <th>Article</th>
+                                    <th>Construction</th>
+                                    <th>Width</th>
+                                    <th>Softness</th>
+                                    <th>Color</th>
+                                    <th>Source</th>
+                                    <th>Quantity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{ var sl = 0;}
+                                @foreach (var item in Model.ResponseStocks)
+                                {
+                                    if (item.Quantity > 0)
+                                    {
+                                        sl++;
+                                        <tr>
+                                            <td>@sl</td>
+                                            <td>@item.ProductCode</td>
+                                            <td>@item.ProductName</td>
+                                            <td>@item.Article</td>
+                                            <td>@item.Construction</td>
+                                            <td>@item.Width</td>
+                                            <td>@item.Softness</td>
+                                            <td>@item.Color</td>
+                                            <td>@item.Sources</td>
+                                            <td>@item.Quantity</td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+
+    </div>
+</section>

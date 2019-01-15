@@ -1,0 +1,53 @@
+﻿@model PermessInternational.Areas.Permess.ViewModels.ProductSettingViewModels
+<section class="content-header">
+    <h1>
+        Add Order Details
+        <small>adding new order information</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#" )"><i class="fa fa-dashboard"></i> Home</a></li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="box">
+        <div class="box-body">
+            <div class="col-md-6 col-sm-6">
+                @using (Html.BeginForm("OrderDetails", "Sales", FormMethod.Post))
+                {
+                    <div class="form-group">
+                        <label class="col-form-label">P.I Code</label>
+                        <input value="@ViewBag.PI" readonly="readonly" type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Buyer Order Ref</label>
+                        <textarea class="form-control" name="BuyerOrderRef"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Order Detail</label>
+                        <textarea class="form-control" name="OrderDetail"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Delivery Status</label>
+                        <select class="form-control" name="DeliveryTypeId">
+                            <option value="1">Pending</option>
+                            <option value="2">Pertial</option>
+                            <option value="3">Complete</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Approval Status</label>
+                        <select class="form-control" name="ApprovalId">
+                            <option value="1">Yes</option>
+                            <option value="2">No</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button id="btnSave" type="submit" value="submit" class="btn btn-info">SUBMIT</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>

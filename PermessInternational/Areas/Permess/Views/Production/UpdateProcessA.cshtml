@@ -1,0 +1,114 @@
+﻿@model PermessInternational.Areas.Permess.Models.ProductionProcessA
+<section class="content-header">
+    <h1>
+        Process A
+        <small>preview of production process a</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="col-md-8 col-sm-8">
+                        @using (Html.BeginForm("UpdateProcessA", "Production", FormMethod.Post))
+                        {
+                            <div class="form-group">
+                                <label class="col-form-label">Opening Balance</label>
+                                <input type="text" value="@Model.OpeninBalance" name="OpeninBalance" id="opening" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Received From Warehouse</label>
+                                <input type="text" value="@Model.ReceivFromWHouse" readonly="readonly" id="house" name="ReceivFromWHouse" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Total</label>
+                                <input type="text" readonly="readonly" id="total" name="ReceivFromWHouse" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Used</label>
+                                <input type="text" value="@Model.Used" name="Used" id="used" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Process Loss</label>
+                                <input type="text" value="@Model.ProcessLoss" name="ProcessLossA" id="process" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Refund</label>
+                                <input type="text" value="@Model.Refund" name="Refund" id="refund" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Send To B</label>
+                                <input type="text" value="@Model.SendB" readonly="readonly" name="SendB" id="sendToB" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Closing Balance</label>
+                                <input type="text" value="@Model.ClosingBalance" readonly="readonly" name="ClosingBalance" id="closing" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" value="submit" class="btn btn-info"><i class="fa fa-plus"></i> UPDATE </button>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer clearfix">
+
+                    <ul class="pagination pagination-sm no-margin pull-right">
+                        <li><a href="#">&laquo;</a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">&raquo;</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+
+    </div>
+</section>
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#opening").keyup(function () {
+                var open = $("#opening").val();
+                var hou = $("#house").val();
+                var tot = Number(open) + Number(hou);
+                $("#total").val(tot);
+            });
+            $("#process").keyup(function () {
+                var use = $("#used").val();
+                var loss = $("#process").val();
+                var va = Number(use) - Number(loss)
+                $("#sendToB").val(va);
+
+            });
+            $("#used").keyup(function () {
+                var use = $("#used").val();
+                var loss = $("#process").val();
+                var va = Number(use) - Number(loss)
+                $("#sendToB").val(va);
+            });
+            $("#refund").keyup(function () {
+                var total = $("#total").val();
+                var use = $("#used").val();
+                var va = Number(total) - Number(use);
+                var ref = $("#refund").val();
+                var clos = va - ref;
+                $("#closing").val(clos);
+            });
+        });
+
+
+
+    </script>
+}

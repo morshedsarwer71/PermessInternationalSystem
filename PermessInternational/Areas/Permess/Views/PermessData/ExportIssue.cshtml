@@ -1,0 +1,53 @@
+﻿<section class="content">
+    <div class="row">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">Export Issue Info</h3>
+            </div>
+            <div class="box-body">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#firstTab">Index</a></li>
+                    <li><a data-toggle="tab" href="#secondTab">Add New</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div id="firstTab" class="tab-pane fade in active">@Html.Action("ExportIssues")</div>
+                    <div id="secondTab" class="tab-pane fade in">@Html.Action("AddExportIssue")</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section Scripts{
+    <script src="~/Content/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script>
+        $(function () {
+            $("#expoIssueDate").datepicker({
+                format: "yyyy-mm-dd"
+            });  
+            $("#expoSentDate").datepicker({
+                format: "yyyy-mm-dd"
+            }); 
+            $("#expoReceivedDate").datepicker({
+                format: "yyyy-mm-dd"
+            }); 
+            $("#iPDate").datepicker({
+                format: "yyyy-mm-dd"
+            });
+            $("#uPDate").datepicker({
+                format: "yyyy-mm-dd"
+            }); 
+            $("#bankSubmitDate").datepicker({
+                format: "yyyy-mm-dd"
+            }); 
+            $("#dueDate").datepicker({
+                format: "yyyy-mm-dd"
+            }); 
+            $("#realizeDate").datepicker({
+                format: "yyyy-mm-dd"
+            }); 
+            $("#collectionDate").datepicker({
+                format: "yyyy-mm-dd"
+            }); 
+        });
+    </script>
+}

@@ -1,0 +1,236 @@
+﻿@model PermessInternational.Areas.Permess.Models.SIDocumentDetails
+<section class="content-header">
+    <h1>
+        Add Stocks
+        <small>adding new goods information</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#" )"><i class="fa fa-dashboard"></i> Home</a></li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="box">
+            <div class="box-body">
+                <div class="col-md-12 col-sm-12">
+                    @using (Html.BeginForm("AddQuantity", "PermessData", FormMethod.Post))
+                    {
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="col-form-label">P.I Code</label>
+                                <input type="text" value="@Model.SICode" readonly="readonly" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Issue Date</label>
+                                <input type="text" value="@Model.IssueDate.ToShortDateString()" readonly="readonly" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Payment Method</label>
+                                @{var name = ""; }
+                                @if (Model.PaymentMethod == 1)
+                                {
+                                    name = "Cash";
+                                }
+                                else if (Model.PaymentMethod == 2)
+                                {
+                                    name = "Cheque";
+                                }
+                                else if (Model.PaymentMethod == 3)
+                                {
+                                    name = "LC Payment";
+                                }
+                                else if (Model.PaymentMethod == 4)
+                                {
+                                    name = "T Payment";
+                                }
+                                <input type="text" value="@name" readonly="readonly" class="form-control" />
+                            </div>
+                            <div class="form-group" id="hsCodeDiv" style="display:none">
+                                <label class="col-form-label">H.S Code</label>
+                                <input type="text" value="@Model.HSCode" readonly="readonly" class="form-control" />
+                            </div>
+                            <div class="form-group" id="lcStatusDiv" style="display:none">
+                                <label class="col-form-label">LC Status</label>
+                                @{var name2 = ""; }
+                                @if (Model.LCStatus == 1)
+                                {
+                                    name2 = "Yes";
+                                }
+                                else if (Model.LCStatus == 2)
+                                {
+                                    name2 = "No";
+                                }
+                                <input type="text" value="@name2" readonly="readonly" class="form-control" />
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-form-label">Comission Amount</label>
+                                <input type="text" value="@Model.CommisionAmount" readonly="readonly" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Buyer</label>
+                                <input type="text" value="@Model.Buyer" readonly="readonly" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Delivery Address</label>
+                                <input type="text" value="@Model.DeliveryAddress" readonly="readonly" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Style</label>
+                                <input type="text" value="@Model.Style" readonly="readonly" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Buyer Order Reference</label>
+                                <input type="text" value="@Model.BuyerOrderRef" readonly="readonly" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="col-form-label">P.O Number</label>
+                                <input type="text" class="form-control" value="@Model.PONumber" id="pONumber" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">P.I Name</label>
+                                <input type="text" value="@Model.SIName" readonly="readonly" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Delivery Status</label>
+                                @{var name3 = ""; }
+                                @if (Model.DeliveryStatus == 1)
+                                {
+                                    name3 = "Pending";
+                                }
+                                else if (Model.DeliveryStatus == 2)
+                                {
+                                    name3 = "Pertial";
+                                }
+                                else if (Model.DeliveryStatus == 3)
+                                {
+                                    name3 = "Complete";
+                                }
+                                <input type="text" value="@name3" readonly="readonly" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Item Num.</label>
+                                <input type="text" value="@Model.ItemNo" readonly="readonly" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Delivery Type</label>
+                                @{var name4 = ""; }
+                                @if (Model.DeliveryType == 1)
+                                {
+                                    name4 = "Foreign";
+                                }
+                                else if (Model.DeliveryType == 2)
+                                {
+                                    name4 = "Local";
+                                }
+                                <input type="text" value="@name4" readonly="readonly" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Bank</label>
+                                @{var name5 = ""; }
+                                @if (Model.Bank == 1)
+                                {
+                                    name5 = "Islami Bank";
+                                }
+                                else if (Model.Bank == 2)
+                                {
+                                    name5 = "UCBL";
+                                }
+                                <input type="text" value="@name5" readonly="readonly" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Document Status</label>
+                                @{var name6 = ""; }
+                                @if (Model.Bank == 1)
+                                {
+                                    name6 = "Yes";
+                                }
+                                else if (Model.Bank == 2)
+                                {
+                                    name6 = "No";
+                                }
+                                <input type="text" value="@name6" readonly="readonly" class="form-control" />
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-form-label">Deliver Quantity</label>
+                                <input type="text" name="Quantity" class="form-control" />
+                            </div>
+
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="col-form-label">Isuued By</label>
+                                <input type="text" id="issuedBy" value="@name" readonly="readonly" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Delivery Date</label>
+                                <input type="text" id="issuedBy" value="@Model.DeliveryDate.ToShortDateString();" readonly="readonly" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Company</label>
+                                @{ var com = ""; var add = "";}
+                                @foreach (var item in ViewBag.Company)
+                                {
+                                    if (item.CompanyId == Model.CompanyId)
+                                    {
+                                        com = item.CompanyName;
+                                        add = item.CompanyAddress;
+                                    }
+                                }
+                                <input type="text" value="@com" readonly="readonly" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Contact Person</label>
+                                <input type="text" value="@Model.ContactPerson" readonly="readonly" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Company Address</label>
+                                <input type="text" value="@add" readonly="readonly" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Comission Status</label>
+                                @{var name7 = ""; }
+                                @if (Model.CommisionStatus == 1)
+                                {
+                                    name7 = "Pending";
+                                }
+                                else if (Model.CommisionStatus == 2)
+                                {
+                                    name7 = "Pertial";
+                                }
+                                else if (Model.CommisionStatus == 2)
+                                {
+                                    name7 = "Complete";
+                                }
+                                <input type="text" value="@name7" readonly="readonly" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Revised</label>
+                                @{var name8 = ""; }
+                                @if (Model.Revised == 1)
+                                {
+                                    name8 = "No";
+                                }
+                                else if (Model.Revised == 2)
+                                {
+                                    name8 = "Yes";
+                                }
+                                <input type="text" value="@name8" readonly="readonly" class="form-control" />
+                            </div>
+
+                        </div>
+                        <div class="form-group" id="btnOne">
+                            <button type="submit" id="btnSubmit" value="submit" class="btn btn-info" style="margin-top:20px;margin-left:33px;">SUBMIT</button>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

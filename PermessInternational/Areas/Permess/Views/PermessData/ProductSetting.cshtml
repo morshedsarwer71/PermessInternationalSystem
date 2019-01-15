@@ -1,0 +1,208 @@
+﻿<section class="content">
+    <div id="dvLoader" class="LoadingDiv" style="display: none;">
+        <center>
+            <img src="~/Content/img/ajax-loader.gif" alt="Loading" />
+        </center>
+    </div>
+    <div class="row">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">Product Setting Info</h3>
+            </div>
+            <div class="box-body">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#firstTab">Index</a></li>
+                    <li><a data-toggle="tab" href="#article">Article</a></li>
+                    <li><a data-toggle="tab" href="#construction">Construction</a></li>
+                    <li><a data-toggle="tab" href="#width">Width</a></li>
+                    <li><a data-toggle="tab" href="#softness">Softness</a></li>
+                    <li><a data-toggle="tab" href="#color">Color</a></li>
+                    <li><a data-toggle="tab" href="#source">Source</a></li>
+                    <li><a data-toggle="tab" href="#category">Category</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div id="firstTab" class="tab-pane fade in active">@Html.Action("ProductSettings")</div>
+                    <div id="article" class="tab-pane fade in">@Html.Action("AddArticle")</div>
+                    <div id="construction" class="tab-pane fade in">@Html.Action("AddConstruction")</div>
+                    <div id="width" class="tab-pane fade in">@Html.Action("AddWidth")</div>
+                    <div id="softness" class="tab-pane fade in">@Html.Action("AddSoftness")</div>
+                    <div id="color" class="tab-pane fade in">@Html.Action("AddColor")</div>
+                    <div id="source" class="tab-pane fade in">@Html.Action("AddSource")</div>
+                    <div id="category" class="tab-pane fade in">@Html.Action("AddCategory")</div>
+                </div>
+            </div>
+        </div>
+        <!-- /.box -->
+        <!-- /.col -->
+
+    </div>
+</section>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#btnArticle').click(function () {
+                var art = $('#Txtarticle').val();
+                var des = $('#articledescription').val();
+                $('#dvLoader').show();
+                $.ajax({
+                    url: "/PermessData/AddArticle",
+                    type: "POST",
+                    data: JSON.stringify({
+                        "Article": art,
+                        "Description": des
+                    }),
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function () {
+                        //alert(result);
+                        $('#dvLoader').hide();
+                        Clear();
+                    }
+                });
+
+            });
+            $('#btnConstruction').click(function () {
+                var con = $('#Txtconstruction').val();
+                var des = $('#constructiondescription').val();
+                $('#dvLoader').show();
+                $.ajax({
+                    url: "/PermessData/AddConstruction",
+                    type: "POST",
+                    data: JSON.stringify({
+                        "Construction": con,
+                        "Description": des
+                    }),
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function () {
+                        //alert(result);
+                        $('#dvLoader').hide();
+                        Clear();
+                    }
+                });
+
+            });
+            $('#btnWidth').click(function () {
+                var wid = $('#Txtwidth').val();
+                var des = $('#widthdescription').val();
+                $('#dvLoader').show();
+                $.ajax({
+                    url: "/PermessData/AddWidth",
+                    type: "POST",
+                    data: JSON.stringify({
+                        "Width": wid,
+                        "Description": des
+                    }),
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function () {
+                        //alert(result);
+                        $('#dvLoader').hide();
+                        Clear();
+                    }
+                });
+
+            });
+            $('#btnSoftness').click(function () {
+                var soft = $('#Txtsoftness').val();
+                var des = $('#softnessdescription').val();
+                $('#dvLoader').show();
+                $.ajax({
+                    url: "/PermessData/AddSoftness",
+                    type: "POST",
+                    data: JSON.stringify({
+                        "Softness": soft,
+                        "Description": des
+                    }),
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function () {
+                        //alert(result);
+                        $('#dvLoader').hide();
+                        Clear();
+                    }
+                });
+
+            });
+            $('#btnColor').click(function () {
+                var col = $('#Txtcolor').val();
+                var des = $('#colordescription').val();
+                $('#dvLoader').show();
+                $.ajax({
+                    url: "/PermessData/AddColor",
+                    type: "POST",
+                    data: JSON.stringify({
+                        "Color": col,
+                        "Description": des
+                    }),
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function () {
+                        //alert(result);
+                        $('#dvLoader').hide();
+                        Clear();
+                    }
+                });
+
+            });
+            $('#btnSource').click(function () {
+                var sour = $('#Txtsource').val();
+                var des = $('#sourcedescription').val();
+                $('#dvLoader').show();
+                $.ajax({
+                    url: "/PermessData/AddSource",
+                    type: "POST",
+                    data: JSON.stringify({
+                        "Source": sour,
+                        "Description": des
+                    }),
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function () {
+                        //alert(result);
+                        $('#dvLoader').hide();
+                        Clear();
+                    }
+                });
+
+            });
+            $('#btnCategory').click(function () {
+                var cat = $('#Txtcategory').val();
+                var des = $('#categorydescription').val();
+                $('#dvLoader').show();
+                $.ajax({
+                    url: "/PermessData/AddCategory",
+                    type: "POST",
+                    data: JSON.stringify({
+                        "Category": cat,
+                        "Description": des
+                    }),
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function () {
+                        //alert(result);
+                        $('#dvLoader').hide();
+                        Clear();
+                    }
+                });
+
+            });
+        });
+        function Clear() {
+            $('#Txtcategory').val('');
+            $('#categorydescription').val('');
+            $('#Txtarticle').val('');
+            $('#articledescription').val('');
+            $('#Txtconstruction').val('');
+            $('#constructiondescription').val('');
+            $('#Txtwidth').val('');
+            $('#widthdescription').val('');
+            $('#Txtsoftness').val('');
+            $('#softnessdescription').val('');
+            $('#Txtcolor').val('');
+            $('#colordescription').val('');
+            $('#Txtsource').val('');
+            $('#sourcedescription').val('');
+        }
+    </script>
+}

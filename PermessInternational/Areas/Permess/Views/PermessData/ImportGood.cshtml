@@ -1,0 +1,219 @@
+﻿@model PermessInternational.Areas.Permess.ViewModels.ProductSettingViewModels
+<section class="content-header">
+    <h1>
+        Add Stocks
+        <small>adding new goods information</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#" )"><i class="fa fa-dashboard"></i> Home</a></li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div id="dvLoader" class="LoadingDiv" style="display: none;margin-top:150px;">
+        <center>
+            <img src="~/Content/img/ajax-loader.gif" alt="Loading" />
+        </center>
+    </div>
+    <div class="row">
+        <div class="box">
+            <div class="box-body">
+                <div class="col-md-6 col-sm-8">
+                    <div class="form-group">
+                        <label class="col-form-label">Goods Type</label>
+                        <select class="form-control" id="goodsType">
+                            <option value="1">Raw Materials</option>
+                            <option value="2"> Semi Finish Goods</option>
+                            <option value="3">Finished Goods</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Product</label>
+                        <select class="form-control" id="productId">
+                            @foreach (var item in Model.Products)
+                            {
+                                <option value="@item.ProductId">@item.ProductName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Article</label>
+                        <select class="form-control" id="articleId">
+                            @foreach (var item in Model.ProductSettings)
+                            {
+                                <option value="@item.ItemId">@item.ItemName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Alter. Article</label>
+                        <input type="text" class="form-control" id="altArticleId" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Width</label>
+                        <select class="form-control" id="widthId">
+                            @foreach (var item in Model.WidthProductSettings)
+                            {
+                                <option value="@item.ItemId">@item.ItemName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Construction</label>
+                        <select class="form-control" id="constructionId">
+                            @foreach (var item in Model.ConstructionProductSettings)
+                            {
+                                <option value="@item.ItemId">@item.ItemName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Softness</label>
+                        <select class="form-control" id="softnessId">
+                            @foreach (var item in Model.SoftnessProductSettings)
+                            {
+                                <option value="@item.ItemId">@item.ItemName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Category</label>
+                        <select class="form-control" id="categoryId">
+                            @foreach (var item in Model.CategoryProductSettings)
+                            {
+                                <option value="@item.ItemId">@item.ItemName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Color</label>
+                        <select class="form-control" id="colorId">
+                            @foreach (var item in Model.ColorProductSettings)
+                            {
+                                <option value="@item.ItemId">@item.ItemName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Source</label>
+                        <select class="form-control" id="sourceId">
+                            @foreach (var item in Model.SourceProductSettings)
+                            {
+                                <option value="@item.ItemId">@item.ItemName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Received Date</label>
+                        <input type="text" class="form-control" id="TxtreceivedDate" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Quantity</label>
+                        <input type="text" class="form-control" id="quantity" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">P.I Code</label>
+                        <input type="text" class="form-control" id="performaCode" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">L.C Number</label>
+                        <input type="text" class="form-control" id="lCNumber" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Supplier</label>
+                        <input type="text" class="form-control" id="supplier" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Description</label>
+                        <textarea class="form-control" id="description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button id="btnSave" type="submit" value="submit" class="btn btn-info">SUBMIT</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+@section Scripts{
+    <script src="~/Content/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(function () {
+                $("#TxtreceivedDate").datepicker({
+                    format: "yyyy-mm-dd"
+                });
+            });
+            $('#btnSave').click(function () {
+                var type = $('#goodsType').val();
+                var product = $('#productId').val();
+                var article = $('#articleId').val();
+                var altArticle = $('#altArticleId').val();
+                var width = $('#widthId').val();
+                var construction = $('#constructionId').val();
+                var softness = $('#softnessId').val();
+                var category = $('#categoryId').val();
+                var source = $('#sourceId').val();
+                var color = $('#colorId').val();
+                var receivedDate = $('#TxtreceivedDate').val();
+                var quantity = $('#quantity').val();
+                var code = $('#performaCode').val();
+                var number = $('#lCNumber').val();
+                var supplier = $('#supplier').val();
+                var description = $('#description').val();
+                $('#dvLoader').show();
+                $.ajax({
+                    url: "/PermessData/ImportGood",
+                    type: "POST",
+                    data: JSON.stringify({
+                        "GoodsType": type,
+                        "ProductId": product,
+                        "ArticleId": article,
+                        "AltArticleId": altArticle,
+                        "WidthId": width,
+                        "ConstructionId": construction,
+                        "SoftnessId": softness,
+                        "CategoryId": category,
+                        "ColorId": color,
+                        "ReceivedDate": receivedDate,
+                        "Quantity": quantity,
+                        "PerformaCode": code,
+                        "LCNumber": number,
+                        "Supplier": supplier,
+                        "Description": description,
+                        "SourceId": source
+                    }),
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        //alert(result);
+                        $('#dvLoader').hide();
+                        alert(data);
+                        Clear();
+                    }
+                });
+
+            });
+        });
+        function Clear() {
+            $('#goodsType').val('');
+            $('#productId').val('');
+            $('#articleId').val('');
+            $('#altArticleId').val('');
+            $('#widthId').val('');
+            $('#constructionId').val('');
+            $('#softnessId').val('');
+            $('#categoryId').val('');
+            $('#colorId').val('');
+            $('#TxtreceivedDate').val('');
+            $('#quantity').val('');
+            $('#performaCode').val('');
+            $('#lCNumber').val('');
+            $('#supplier').val('');
+            $('#description').val('');
+            $('#sourceId').val('');
+        }
+    </script>
+}

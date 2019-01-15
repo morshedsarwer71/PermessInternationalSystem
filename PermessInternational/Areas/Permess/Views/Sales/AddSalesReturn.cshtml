@@ -1,0 +1,170 @@
+﻿@model PermessInternational.Areas.Permess.ViewModels.ProductSettingViewModels
+@{ Layout = null;}
+<section class="content-header">
+    <h1>
+        Add PR
+        <small>adding new PR information</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#" )"><i class="fa fa-dashboard"></i> Home</a></li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div id="dvLoader" class="LoadingDiv" style="display: none;">
+        <center>
+            <img src="~/Content/img/ajax-loader.gif" alt="Loading" />
+        </center>
+    </div>
+    <div class="row">
+        <div class="box">
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="col-md-12 col-sm-12">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="col-form-label">P.I Code</label>
+                                    <input type="text" id="productSIcode" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="col-form-label">P.I Return Code</label>
+                                    <input type="text" id="sRICode" readonly="readonly" value="@DateTime.Now.ToString("mmddfff")" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="col-form-label">P.I Return Date</label>
+                                    <input type="text" id="sRIDate" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="col-form-label">Product</label>
+                                    <select id="productId" class="form-control">
+                                        @foreach (var item in Model.Products)
+                                        {
+                                            <option value="@item.ProductId">@item.ProductName</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="col-form-label">Return Quantity</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-try"></i>
+                                        </div>
+                                        <input type="text" id="orderQuantity" required="required" class="form-control pull-right">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="col-form-label">Article</label>
+                                    <select id="articleId" class="form-control">
+                                        @foreach (var item in Model.ArticleProductSettings)
+                                        {
+                                            <option value="@item.ItemId">@item.ItemName</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="col-form-label">Alt. Article</label>
+                                    <input type="text" id="altArticle" required="required" class="form-control pull-right">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="col-form-label">Softness</label>
+                                    <select id="softnessId" class="form-control">
+                                        @foreach (var item in Model.SoftnessProductSettings)
+                                        {
+                                            <option value="@item.ItemId">@item.ItemName</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="col-form-label">Source</label>
+                                    <select id="sourceId" class="form-control">
+                                        @foreach (var item in Model.SourceProductSettings)
+                                        {
+                                            <option value="@item.ItemId">@item.ItemName</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="col-form-label">Color</label>
+                                    <select id="colorId" class="form-control">
+                                        @foreach (var item in Model.ColorProductSettings)
+                                        {
+                                            <option value="@item.ItemId">@item.ItemName</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="col-form-label">Length</label>
+                                    <select id="lenghtId" class="form-control">
+                                        <option value="1">Meters</option>
+                                        <option value="2">Yards</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="col-form-label">Width</label>
+                                    <select id="widthId" class="form-control">
+                                        @foreach (var item in Model.WidthProductSettings)
+                                        {
+                                            <option value="@item.ItemId">@item.ItemName</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="col-form-label">Construction</label>
+                                    <select id="constructionId" class="form-control">
+                                        @foreach (var item in Model.ConstructionProductSettings)
+                                        {
+                                            <option value="@item.ItemId">@item.ItemName</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <button id="btnNew" type="submit" value="submit" class="btn btn-info" style="margin-top:25px;"><i class="fa fa-plus"></i> Submit </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
