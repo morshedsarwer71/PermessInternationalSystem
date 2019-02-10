@@ -27,6 +27,7 @@ namespace PermessInternational.Areas.Permess.Models
         public int AssignTo { get; set; }
         public int ProductionStatus { get; set; }
         public int IsProcess { get; set; }
+        public int ThirdPartyStatus { get; set; }
         public string Description { get; set; }
         public int ConcernId { get; set; }
         public int Creator { get; set; }

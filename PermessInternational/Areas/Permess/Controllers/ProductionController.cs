@@ -139,12 +139,8 @@ namespace PermessInternational.Areas.Permess.Controllers
                     {
                         value = item.Quantity;
                     }
-                    else
-                    {
-                        value = -1;
-                    }
                 }
-                if (value >= 0)
+                if (value >= orderRawMaterial.Quantity)
                 {
                     _production.AddOrderRawMaterial(orderRawMaterial, concernId, userId, id);
                     _production.ProductionChange(id);
@@ -192,6 +188,7 @@ namespace PermessInternational.Areas.Permess.Controllers
                 var company = _buyer.Companies(concernId);
                 var article = _product.ArticleProductSettings(concernId);
                 var region = _sales.Regions(concernId);
+                var yes = _product.YesNoModels();
                 ProductSettingViewModels viewModels = new ProductSettingViewModels()
                 {
                     ProductSettings = product,
@@ -204,7 +201,8 @@ namespace PermessInternational.Areas.Permess.Controllers
                     Products = products,
                     Companies = company,
                     ArticleProductSettings = article,
-                    Regions = region
+                    Regions = region,
+                    YesNoModels= yes
                 };
                 return View(viewModels);
             }
@@ -234,7 +232,12 @@ namespace PermessInternational.Areas.Permess.Controllers
                 var procA = _context.AProductions.FirstOrDefault(m => m.OrderId == id);
                 if (procA == null)
                 {
-                    return View();
+                    var yes = _product.YesNoModels();
+                    ProductSettingViewModels viewModels = new ProductSettingViewModels()
+                    {                        
+                        YesNoModels = yes
+                    };
+                    return View(viewModels);
                 }
                 ViewBag.data = "Data Inserted";
                 return RedirectToAction(nameof(ProductionProces));
@@ -263,6 +266,7 @@ namespace PermessInternational.Areas.Permess.Controllers
                 var procA = _context.AProductions.FirstOrDefault(m => m.OrderId == id);
                 if (procA != null)
                 {
+                    procA.YesNoModels = _product.YesNoModels();
                     return View(procA);
                 }
                 return RedirectToAction(nameof(ProductionProces));
@@ -291,6 +295,7 @@ namespace PermessInternational.Areas.Permess.Controllers
                 var procA = _context.BProductions.FirstOrDefault(m => m.OrderId == id);
                 if (procA != null)
                 {
+                    procA.YesNoModels= _product.YesNoModels();
                     return View(procA);
                 }
                 return RedirectToAction(nameof(ProductionProces));
@@ -319,6 +324,7 @@ namespace PermessInternational.Areas.Permess.Controllers
                 var procA = _context.CProductions.FirstOrDefault(m => m.OrderId == id);
                 if (procA != null)
                 {
+                    procA.YesNoModels = _product.YesNoModels();
                     return View(procA);
                 }
                 return RedirectToAction(nameof(ProductionProces));
@@ -349,6 +355,7 @@ namespace PermessInternational.Areas.Permess.Controllers
                 var procB = _context.BProductions.FirstOrDefault(m => m.OrderId == id);
                 if (procB == null && value != null)
                 {
+                    value.YesNoModels = _product.YesNoModels();
                     return View(value);
                 }
                 ViewBag.data = "Data Inserted";
@@ -375,10 +382,12 @@ namespace PermessInternational.Areas.Permess.Controllers
             var userId = Convert.ToInt32(Session["UserId"]);
             if (concernId > 0 && userId > 0)
             {
+                //var value="";
                 var value = _context.BProductions.FirstOrDefault(m => m.OrderId == id);
                 var procA = _context.CProductions.FirstOrDefault(m => m.OrderId == id);
                 if (procA == null && value != null)
                 {
+                    value.YesNoModels = _product.YesNoModels();
                     return View(value);
                 }
                 ViewBag.data = "Data Inserted";

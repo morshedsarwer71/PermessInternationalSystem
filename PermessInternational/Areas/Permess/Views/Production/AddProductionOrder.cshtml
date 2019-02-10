@@ -119,6 +119,15 @@
                             </select>
                         </div>
                         <div class="form-group">
+                            <label class="col-form-label">Third Party Status</label>
+                            <select class="form-control" name="ThirdPartyStatus">
+                                @foreach (var item in Model.YesNoModels)
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label class="col-form-label">Description</label>
                             <textarea class="form-control" name="Description"></textarea>
                         </div>

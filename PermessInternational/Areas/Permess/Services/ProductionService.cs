@@ -221,6 +221,7 @@ namespace PermessInternational.Areas.Permess.Services
                                 Softness = Convert.ToString(result[6]),
                                 Source = Convert.ToString(result[7]),
                                 Width = Convert.ToString(result[8]),
+                                Time = Convert.ToString(result[9])                                
 
                             });
                         }
@@ -241,6 +242,7 @@ namespace PermessInternational.Areas.Permess.Services
             update.Refund = productionProcessA.Refund;
             update.SendB = productionProcessA.SendB;
             update.Used = productionProcessA.Used;
+            update.ThirdPartyStatus = productionProcessA.ThirdPartyStatus;
             _context.SaveChanges();
         }
 
@@ -254,6 +256,7 @@ namespace PermessInternational.Areas.Permess.Services
             update.ReceivFromA = productionProcessB.ReceivFromA;
             update.SendFinal = productionProcessB.SendFinal;
             update.Total = productionProcessB.Total;
+            update.ThirdPartyStatus = productionProcessB.ThirdPartyStatus;
             _context.SaveChanges();
         }
 
@@ -269,6 +272,7 @@ namespace PermessInternational.Areas.Permess.Services
             update.ReceivFromB = productionProcessC.ReceivFromB;
             update.Refected = productionProcessC.Refected;
             update.SenDFinal = productionProcessC.SenDFinal;
+            update.ThirdPartyStatus = productionProcessC.ThirdPartyStatus;
             _context.SaveChanges();
         }
     }

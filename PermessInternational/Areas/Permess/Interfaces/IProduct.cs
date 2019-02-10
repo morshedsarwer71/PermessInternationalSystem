@@ -1,5 +1,6 @@
 ﻿using PermessInternational.Areas.Permess.Models;
 using PermessInternational.Areas.Permess.PlainModels;
+using PermessInternational.Areas.Permess.StaticModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,5 +21,11 @@ namespace PermessInternational.Areas.Permess.Interfaces
         IEnumerable<ResponseProductSetting> ColorProductSettings(int concernId);
         IEnumerable<ResponseProductSetting> SourceProductSettings(int concernId);
         IEnumerable<ResponseProductSetting> CategoryProductSettings(int concernId);
+        IEnumerable<YesNoModel> YesNoModels();
+        IEnumerable<PaymentMethod> PaymentMethods();
+        IEnumerable<Bank> Banks();
+        IEnumerable<Status> Statuses();
+        IEnumerable<Length> Lengths();
+        IEnumerable<DeliveryType> DeliveryTypes();
     }
 }

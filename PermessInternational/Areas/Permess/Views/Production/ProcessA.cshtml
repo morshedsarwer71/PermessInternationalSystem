@@ -1,4 +1,5 @@
-﻿<section class="content-header">
+﻿@model PermessInternational.Areas.Permess.ViewModels.ProductSettingViewModels
+<section class="content-header">
     <h1>
         Process A
         <small>preview of production process a</small>
@@ -51,6 +52,15 @@
                                 <input type="text" readonly="readonly" name="ClosingBalance" id="closing" class="form-control" />
                             </div>
                             <div class="form-group">
+                                <label class="col-form-label">Third Party Status</label>
+                                <select class="form-control" name="ThirdPartyStatus">
+                                    @foreach (var item in Model.YesNoModels)
+                                    {
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <button type="submit" value="submit" class="btn btn-info"><i class="fa fa-plus"></i> SUBMIT</button>
                             </div>
                         }
@@ -88,7 +98,7 @@
                 var use = $("#used").val();
                 var loss = $("#process").val();
                 var va = Number(use) - Number(loss)
-                $("#sendToB").val(va);                
+                $("#sendToB").val(va);
 
             });
             $("#used").keyup(function () {
@@ -103,7 +113,7 @@
                 var va = Number(total) - Number(use);
                 var ref = $("#refund").val();
                 var clos = va - ref;
-                $("#closing").val(clos);                
+                $("#closing").val(clos);
             });
         });
 

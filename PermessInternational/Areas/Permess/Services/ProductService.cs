@@ -1,6 +1,7 @@
 ﻿using PermessInternational.Areas.Permess.Interfaces;
 using PermessInternational.Areas.Permess.Models;
 using PermessInternational.Areas.Permess.PlainModels;
+using PermessInternational.Areas.Permess.StaticModels;
 using PermessInternational.PermessContext;
 using System;
 using System.Collections.Generic;
@@ -235,6 +236,129 @@ namespace PermessInternational.Areas.Permess.Services
                 _context.Database.Connection.Close();
             }
             return productSettings;
+        }
+
+        public IEnumerable<YesNoModel> YesNoModels()
+        {
+            List<YesNoModel> yesNoModels = new List<YesNoModel>()
+            {
+                new YesNoModel()
+                {
+                    Id=2,
+                    Name="No"
+                },
+                new YesNoModel()
+                {
+                    Id=1,
+                    Name="Yes"
+                }
+            };
+            return yesNoModels;
+        }
+
+        public IEnumerable<PaymentMethod> PaymentMethods()
+        {
+            List<PaymentMethod> yesNoModels = new List<PaymentMethod>()
+            {
+                new PaymentMethod()
+                {
+                    Id=1,
+                    Name="Cash"
+                },
+                new PaymentMethod()
+                {
+                    Id=2,
+                    Name="Cheque"
+                },                
+                new PaymentMethod()
+                {
+                    Id=3,
+                    Name="LC Payment"
+                },
+                new PaymentMethod()
+                {
+                    Id=4,
+                    Name="TT Payment"
+                }
+            };
+            return yesNoModels;
+        }
+
+        public IEnumerable<Bank> Banks()
+        {
+            List<Bank> yesNoModels = new List<Bank>()
+            {
+                new Bank()
+                {
+                    Id=1,
+                    Name="Islami Bank"
+                },
+                new Bank()
+                {
+                    Id=2,
+                    Name="UCBL"
+                }
+            };
+            return yesNoModels;
+        }
+
+        public IEnumerable<Status> Statuses()
+        {
+            List<Status> yesNoModels = new List<Status>()
+            {
+                new Status()
+                {
+                    Id=1,
+                    Name="Pending"
+                },
+                new Status()
+                {
+                    Id=2,
+                    Name="Pertial"
+                },
+                new Status()
+                {
+                    Id=3,
+                    Name="Complete"
+                }
+            };
+            return yesNoModels;
+        }
+
+        public IEnumerable<Length> Lengths()
+        {
+            List<Length> yesNoModels = new List<Length>()
+            {
+                new Length()
+                {
+                    Id=1,
+                    Name="Meters"
+                },
+                new Length()
+                {
+                    Id=2,
+                    Name="Yards"
+                }
+            };
+            return yesNoModels;
+        }
+
+        public IEnumerable<DeliveryType> DeliveryTypes()
+        {
+            List<DeliveryType> yesNoModels = new List<DeliveryType>()
+            {
+                new DeliveryType()
+                {
+                    Id=1,
+                    Name="Foreign"
+                },
+                new DeliveryType()
+                {
+                    Id=2,
+                    Name="Local"
+                }
+            };
+            return yesNoModels;
         }
     }
 }

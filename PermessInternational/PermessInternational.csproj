@@ -227,6 +227,12 @@
     <Compile Include="Areas\Permess\Services\ProductService.cs" />
     <Compile Include="Areas\Permess\Services\SalesInvoiceService.cs" />
     <Compile Include="Areas\Permess\Services\StockServices.cs" />
+    <Compile Include="Areas\Permess\StaticModels\Bank.cs" />
+    <Compile Include="Areas\Permess\StaticModels\DeliveryType.cs" />
+    <Compile Include="Areas\Permess\StaticModels\Length.cs" />
+    <Compile Include="Areas\Permess\StaticModels\PaymentMethod.cs" />
+    <Compile Include="Areas\Permess\StaticModels\Status.cs" />
+    <Compile Include="Areas\Permess\StaticModels\YesNoModel.cs" />
     <Compile Include="Areas\Permess\ViewModels\CompanyViewModels.cs" />
     <Compile Include="Areas\Permess\ViewModels\ExportIssuesViewModels.cs" />
     <Compile Include="Areas\Permess\ViewModels\GoodsTypeViewModels.cs" />
@@ -403,6 +409,10 @@
     <Compile Include="Migrations\201901070917155_newProductName44.cs" />
     <Compile Include="Migrations\201901070917155_newProductName44.Designer.cs">
       <DependentUpon>201901070917155_newProductName44.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902060722286_productionAndProcessChange.cs" />
+    <Compile Include="Migrations\201902060722286_productionAndProcessChange.Designer.cs">
+      <DependentUpon>201902060722286_productionAndProcessChange.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PermessContext\PermessDbContext.cs" />
@@ -7438,6 +7448,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901070917155_newProductName44.resx">
       <DependentUpon>201901070917155_newProductName44.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902060722286_productionAndProcessChange.resx">
+      <DependentUpon>201902060722286_productionAndProcessChange.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

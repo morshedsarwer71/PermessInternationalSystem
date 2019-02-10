@@ -1,6 +1,8 @@
-﻿using System;
+﻿using PermessInternational.Areas.Permess.StaticModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -18,8 +20,11 @@ namespace PermessInternational.Areas.Permess.Models
         public decimal ReadyToUse { get; set; }
         public decimal ClosingBalance { get; set; }
         public decimal SendFinal { get; set; }
+        public int ThirdPartyStatus { get; set; }
         public int Creator { get; set; }
         public int ConcernId { get; set; }
         public DateTime CreationDate { get; set; }
+        [NotMapped]
+        public IEnumerable<YesNoModel> YesNoModels { get; set; }
     }
 }

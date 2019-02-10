@@ -1,5 +1,6 @@
 ﻿using PermessInternational.Areas.Permess.Models;
 using PermessInternational.Areas.Permess.PlainModels;
+using PermessInternational.Areas.Permess.StaticModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,5 +22,6 @@ namespace PermessInternational.Areas.Permess.ViewModels
         public IEnumerable<Company> Companies { get; set; }
         public IEnumerable<Region> Regions { get; set; }
         public SIDocumentDetails Details { get; set; }
+        public IEnumerable<YesNoModel> YesNoModels { get;set;}
     }
 }
