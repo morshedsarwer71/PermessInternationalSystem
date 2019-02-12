@@ -1,0 +1,243 @@
+﻿@model PermessInternational.Areas.Permess.ViewModels.ProductSettingViewModels
+<section class="content-header">
+    <h1>
+        Update Purchase Invoice
+        <small>updating issued purchase invoice</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#" )"><i class="fa fa-dashboard"></i> Home</a></li>
+    </ol>
+</section>
+<section class="content">
+    <div class="box" id="lcStatement">
+        <div class="box-body">
+            <div class="col-md-12 col-sm-12">
+                @using (Html.BeginForm("EditSIDocument", "Sales", FormMethod.Post))
+                {
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="col-form-label">P.I Code</label>
+                        <input type="text" id="sICode" name="SICode" value="@Model.Details.SICode" readonly="readonly" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Issue Date</label>
+                        <input type="text" name="IssueDate" value="@Model.Details.IssueDate.ToShortDateString()" class="form-control" />
+                    </div>
+                    <div class="form-group" style="display:none">
+                        <label class="col-form-label">Date Remaining</label>
+                        <input type="text" id="dateRemaining" readonly="readonly" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Payment Method</label>
+                        <select class="form-control" name="PaymentMethod">
+                            @foreach (var item in Model.PaymentMethods)
+                            {
+                                if (@Model.Details.PaymentMethod == item.Id)
+                                {
+                                    <option selected="selected" value="@item.Id">@item.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group" id="hsCodeDiv">
+                        <label class="col-form-label">H.S Code</label>
+                        <input type="text" id="hSCode" name="HSCode" value="@Model.Details.HSCode" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">LC Status</label>
+                        <select class="form-control" name="LCStatus">
+                            @foreach (var item in Model.YesNoModels)
+                            {
+                                if (Model.Details.LCStatus == item.Id)
+                                {
+                                    <option selected="selected" value="@item.Id">@item.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-form-label">Comission Amount</label>
+                        <input type="text" class="form-control" value="@Model.Details.CommisionAmount" name="CommisionAmount" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Buyer</label>
+                        <input type="text" name="Buyer" class="form-control" value="@Model.Details.Buyer" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Delivery Address</label>
+                        <textarea class="form-control" name="DeliveryAddress">@Model.Details.DeliveryAddress</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Style</label>
+                        <input type="text" class="form-control" name="Style" value="@Model.Details.Style" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="col-form-label">P.O Number</label>
+                        <input type="text" class="form-control" name="PONumber" value="@Model.Details.PONumber" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">P.I Name</label>
+                        <input type="text" name="SIName" class="form-control" value="@Model.Details.SIName" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Delivery Status</label>
+                        <select class="form-control" name="DeliveryStatus">
+                            @foreach (var item in Model.Statuses)
+                            {
+                                if (Model.Details.DeliveryStatus == item.Id)
+                                {
+                                    <option selected="selected" value="@item.Id">@item.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Item Num.</label>
+                        <input type="text" class="form-control" name="ItemNo" value="@Model.Details.ItemNo" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Delivery Type</label>
+                        <select class="form-control" name="DeliveryType">
+                            @foreach (var item in Model.DeliveryTypes)
+                            {
+                                if (Model.Details.DeliveryType == item.Id)
+                                {
+                                    <option selected="selected" value="@item.Id">@item.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Bank</label>
+                        <select class="form-control" name="Bank">
+                            @foreach (var item in Model.Banks)
+                            {
+                                if (Model.Details.Bank == item.Id)
+                                {
+                                    <option selected value="@item.Id">@item.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Document Status</label>
+                        <select class="form-control" name="DocumentStatus">
+                            @foreach (var item in Model.YesNoModels)
+                            {
+                                if (Model.Details.DocumentStatus == item.Id)
+                                {
+                                    <option selected="selected" value="@item.Id">@item.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-form-label">Buyer Order Reference</label>
+                        <textarea class="form-control" name="BuyerOrderRef">@Model.Details.BuyerOrderRef</textarea>
+                    </div>
+
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="col-form-label">Isuued By</label>
+                        <input type="text" name="IssuedBy" readonly="readonly" value="@Model.Details.IssuedBy" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Delivery Date</label>
+                        <input type="text" name="DeliveryDate" value="@Model.Details.DeliveryDate.ToShortDateString()" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Company</label>
+                        <select class="form-control" name="CompanyId">
+                            @foreach (var item in Model.Companies)
+                            {
+                                if (Model.Details.CompanyId == item.CompanyId)
+                                {
+                                    <option selected="selected" value="@item.CompanyId">@item.CompanyName</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.CompanyId">@item.CompanyName</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Contact Person</label>
+                        <input type="text" class="form-control" value="@Model.Details.ContactPerson" name="ContactPerson" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Company Address</label>
+                        <textarea class="form-control" readonly="readonly">@Model.Details.DeliveryAddress</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Comission Status</label>
+                        <select class="form-control" name="CommisionStatus">
+                            @foreach (var item in Model.Statuses)
+                            {
+                                if (Model.Details.CommisionStatus == item.Id)
+                                {
+                                    <option selected="selected" value="@item.Id">@item.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Revised</label>
+                        <select class="form-control" name="Revised">
+                            @foreach (var item in Model.YesNoModels)
+                            {
+                                if (Model.Details.Revised == item.Id)
+                                {
+                                    <option selected="selected" value="@item.Id">@item.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+
+                </div>
+                <div class="form-group" id="btnOne">
+                    <button type="submit" id="btnSubmit" value="submit" class="btn btn-info" style="margin-top:20px;margin-left:33px;">UPDATE</button>
+                </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</section>

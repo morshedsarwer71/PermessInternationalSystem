@@ -9,5 +9,6 @@ namespace PermessInternational.Areas.Global.ViewModels
     public class RoleUserViewModels
     {
         public IEnumerable<UserRole> UserRoles { get; set; }
+        public SystemUser SystemUser { get; set; }
     }
 }

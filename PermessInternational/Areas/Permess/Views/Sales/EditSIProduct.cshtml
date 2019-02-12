@@ -1,0 +1,222 @@
+﻿@model PermessInternational.Areas.Permess.ViewModels.ProductSettingViewModels
+<section class="content-header">
+    <h1>
+        Update Purchased Product
+        <small>updating purchased product</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#" )"><i class="fa fa-dashboard"></i> Home</a></li>
+    </ol>
+</section>
+<section class="content">
+    <div class="box" id="lcStatement">
+        <div class="box-body">
+            @using (Html.BeginForm("EditSIProduct", "Sales", FormMethod.Post))
+            {
+            <div class="col-md-12 col-sm-12">
+                <div id="productHide">
+                    <div class="col-md-6">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="col-form-label">P.I Code</label>
+                                <input type="text" value="@Model.ProductDetails.SICode" name="SICode" class="form-control" readonly="readonly" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="col-form-label">Article</label>
+                                <select name="ArticleId" class="form-control">
+                                    @foreach (var item in Model.ArticleProductSettings)
+                                    {
+                                        if (Model.ProductDetails.ArticleId == item.ItemId)
+                                        {
+                                            <option selected="selected" value="@item.ItemId">@item.ItemName</option>
+                                        }
+                                        <option value="@item.ItemId">@item.ItemName</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="col-form-label">Alt. Article</label>
+                                <input type="text" name="AltArticle" required="required" value="@Model.ProductDetails.AltArticle" class="form-control pull-right">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="col-form-label">Width</label>
+                                <select name="WidthId" class="form-control">
+                                    @foreach (var item in Model.WidthProductSettings)
+                                    {
+                                        if (Model.ProductDetails.WidthId == item.ItemId)
+                                        {
+                                            <option selected="selected" value="@item.ItemId">@item.ItemName</option>
+                                        }
+                                        <option value="@item.ItemId">@item.ItemName</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="col-form-label">Construction</label>
+                                <select name="ConstructionId" class="form-control">
+                                    @foreach (var item in Model.ConstructionProductSettings)
+                                    {
+                                        if (Model.ProductDetails.ConstructionId == item.ItemId)
+                                        {
+                                            <option selected="selected" value="@item.ItemId">@item.ItemName</option>
+                                        }
+                                        <option value="@item.ItemId">@item.ItemName</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="col-form-label">Softness</label>
+                                <select name="SoftnessId" class="form-control">
+                                    @foreach (var item in Model.SoftnessProductSettings)
+                                    {
+                                        if (Model.ProductDetails.SoftnessId == item.ItemId)
+                                        {
+                                            <option selected="selected" value="@item.ItemId">@item.ItemName</option>
+                                        }
+                                        <option value="@item.ItemId">@item.ItemName</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="col-form-label">Source</label>
+                                <select name="SourceId" class="form-control">
+                                    @foreach (var item in Model.SourceProductSettings)
+                                    {
+                                        if (Model.ProductDetails.SourceId == item.ItemId)
+                                        {
+                                            <option selected="selected" value="@item.ItemId">@item.ItemName</option>
+                                        }
+                                        <option value="@item.ItemId">@item.ItemName</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="col-form-label">Color</label>
+                                <select name="ColorId" class="form-control">
+                                    @foreach (var item in Model.ColorProductSettings)
+                                    {
+                                        if (Model.ProductDetails.ColorId == item.ItemId)
+                                        {
+                                            <option selected="selected" value="@item.ItemId">@item.ItemName</option>
+                                        }
+                                        <option value="@item.ItemId">@item.ItemName</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="col-form-label">Length</label>
+                                <select name="LenghtId" class="form-control">
+                                    @foreach (var item in Model.Lengths)
+                                    {
+                                        if (Model.ProductDetails.LenghtId == item.Id)
+                                        {
+                                            <option selected="selected" value="@item.Id">@item.Name</option>
+                                        }
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="col-form-label">Product</label>
+                                <select name="ProductId" class="form-control">
+                                    @foreach (var item in Model.Products)
+                                    {
+                                        if (Model.ProductDetails.ProductId == item.ProductId)
+                                        {
+                                            <option selected="selected" value="@item.ProductId">@item.ProductName</option>
+                                        }
+                                        <option value="@item.ProductId">@item.ProductName</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="col-form-label">Order Quantity</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-try"></i>
+                                    </div>
+                                    <input type="text" name="OrderQuantity" value="@Model.ProductDetails.OrderQuantity" required="required" class="form-control pull-right">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="col-form-label">Unit Price</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-try"></i>
+                                    </div>
+                                    <input type="text" name="UnitPrice" required="required" value="@Model.ProductDetails.UnitPrice" class="form-control pull-right">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="col-form-label">Over Invoice</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-try"></i>
+                                    </div>
+                                    <input type="text" name="OverInvoice" required="required" value="@Model.ProductDetails.OverInvoice" class="form-control pull-right">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="col-form-label">Net Price</label>
+                                <input type="text" id="netPrice" readonly="readonly" required="required" class="form-control pull-right">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="col-form-label">Net Over Invoice</label>
+                                <input type="text" id="netOverInvoice" readonly="readonly" required="required" class="form-control pull-right">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="col-form-label">Delivery Quantity</label>
+                                <input type="text" name="DeliveryQuantity" required="required" value="@Model.ProductDetails.DeliveryQuantity" class="form-control pull-right">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <button id="btnNew" type="submit" value="submit" class="btn btn-info" style="margin-top:25px;"> Update</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</section>

@@ -9,6 +9,7 @@ namespace PermessInternational.Areas.Permess.PlainModels
     {
         public string SICode { get; set; }
         public DateTime IssueDate { get; set; }
+        public string Date { get; set; }
         public string Companyname { get; set; }
         public decimal OrderQuantity { get; set; }
         public decimal NetPrice { get; set; }

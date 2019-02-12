@@ -360,5 +360,41 @@ namespace PermessInternational.Areas.Permess.Services
             };
             return yesNoModels;
         }
+
+        public IEnumerable<PaymentClause> PaymentClauses()
+        {
+            List<PaymentClause> yesNoModels = new List<PaymentClause>()
+            {
+                new PaymentClause()
+                {
+                    Id=1,
+                    Name="BDT"
+                },
+                new PaymentClause()
+                {
+                    Id=2,
+                    Name="USD"
+                }
+            };
+            return yesNoModels;
+        }
+
+        public IEnumerable<Tenor> Tenors()
+        {
+            List<Tenor> yesNoModels = new List<Tenor>()
+            {
+                new Tenor()
+                {
+                    Id=1,
+                    Name="60 Days"
+                },
+                new Tenor()
+                {
+                    Id=2,
+                    Name="90 Days"
+                }
+            };
+            return yesNoModels;
+        }
     }
 }

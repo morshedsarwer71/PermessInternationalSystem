@@ -49,8 +49,9 @@ namespace PermessInternational.Areas.Global.Controllers
                 {
                     Session["ConcernId"] = 1;
                     Session["UserId"] = Convert.ToInt32(query.UserID);
-                    var userName = _context.UserRoles.FirstOrDefault(x=>x.UserRoleId== query.UserRole);
+                    var userName = _context.UserRoles.FirstOrDefault(x => x.UserRoleId == query.UserRole);
                     Session["RoleName"] = Convert.ToString(userName.UserRoleName);
+                    Session["RoleId"] = Convert.ToString(userName.UserRoleId);
                     Session["UserName"] = Convert.ToString(query.Name);
                     return RedirectToAction("Index", "PermessData", new { Area = "Permess" });
                 }
@@ -84,7 +85,7 @@ namespace PermessInternational.Areas.Global.Controllers
             SystemUserViewModels viewModels = new SystemUserViewModels()
             {
                 SystemUsers = user,
-                UserRoles= role
+                UserRoles = role
             };
             return View(viewModels);
         }
@@ -93,10 +94,10 @@ namespace PermessInternational.Areas.Global.Controllers
         public ActionResult AddUser()
         {
             var concernId = Convert.ToInt32(Session["ConcernId"]);
-            var role = _context.UserRoles.Where(x=>x.ConcernId== 1).ToList();
+            var role = _context.UserRoles.Where(x => x.ConcernId == 1).ToList();
             RoleUserViewModels viewModels = new RoleUserViewModels()
             {
-                UserRoles=role                
+                UserRoles = role
             };
             return View(viewModels);
         }
@@ -123,6 +124,29 @@ namespace PermessInternational.Areas.Global.Controllers
                 return Json("added successfully", JsonRequestBehavior.AllowGet);
             }
             return Json("User name or email already exists", JsonRequestBehavior.AllowGet);
+        }
+        [HttpGet]
+        public ActionResult EditUserRole(int id)
+        {
+            var concernId = Convert.ToInt32(Session["ConcernId"]);
+            var role = _context.UserRoles.Where(x => x.ConcernId == 1).ToList();
+            var user = _context.SystemUsers.FirstOrDefault(x => x.UserID == id);
+            RoleUserViewModels viewModels = new RoleUserViewModels()
+            {
+                UserRoles = role,
+                SystemUser = user
+            };
+            return View(viewModels);
+        }
+        [HttpPost]
+        public ActionResult EditUserRole(int id,SystemUser system)
+        {
+            var user = _context.SystemUsers.FirstOrDefault(x => x.UserID == id);
+            user.EmailAddress = system.EmailAddress;
+            user.Name = system.Name;
+            user.UserRole = system.UserRole;
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
         }
     }
 }

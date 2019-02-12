@@ -552,6 +552,23 @@ namespace PermessInternational.Areas.Permess.Controllers
 
         }
         [HttpGet]
+        public ActionResult EditOrders()
+        {
+            var concernId = Convert.ToInt32(Session["ConcernId"]);
+            var userId = Convert.ToInt32(Session["UserId"]);
+            if (concernId > 0 && userId > 0)
+            {
+                var order = _stock.ResponseOrders();
+                OrdersViewModels viewModels = new OrdersViewModels()
+                {
+                    ResponseOrders = order
+                };
+                return View(viewModels);
+            }
+            return RedirectToAction("LogIn", "GlobalData", new { Area = "Global" });
+
+        }
+        [HttpGet]
         public ActionResult AddQuantity(int id)
         {
             var concernId = Convert.ToInt32(Session["ConcernId"]);

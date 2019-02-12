@@ -230,8 +230,10 @@
     <Compile Include="Areas\Permess\StaticModels\Bank.cs" />
     <Compile Include="Areas\Permess\StaticModels\DeliveryType.cs" />
     <Compile Include="Areas\Permess\StaticModels\Length.cs" />
+    <Compile Include="Areas\Permess\StaticModels\PaymentClause.cs" />
     <Compile Include="Areas\Permess\StaticModels\PaymentMethod.cs" />
     <Compile Include="Areas\Permess\StaticModels\Status.cs" />
+    <Compile Include="Areas\Permess\StaticModels\Tenor.cs" />
     <Compile Include="Areas\Permess\StaticModels\YesNoModel.cs" />
     <Compile Include="Areas\Permess\ViewModels\CompanyViewModels.cs" />
     <Compile Include="Areas\Permess\ViewModels\ExportIssuesViewModels.cs" />
@@ -413,6 +415,10 @@
     <Compile Include="Migrations\201902060722286_productionAndProcessChange.cs" />
     <Compile Include="Migrations\201902060722286_productionAndProcessChange.Designer.cs">
       <DependentUpon>201902060722286_productionAndProcessChange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902111739245_cashDetails.cs" />
+    <Compile Include="Migrations\201902111739245_cashDetails.Designer.cs">
+      <DependentUpon>201902111739245_cashDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PermessContext\PermessDbContext.cs" />
@@ -7268,6 +7274,16 @@
     <Content Include="Areas\Permess\Views\Production\UpdateProcessB.cshtml" />
     <Content Include="Areas\Permess\Views\Production\UpdateProcessC.cshtml" />
     <Content Include="Areas\Permess\Views\Sales\SIDocument.cshtml" />
+    <Content Include="Areas\Permess\Views\PermessData\EditOrders.cshtml" />
+    <Content Include="Areas\Permess\Views\Sales\EditSIDocument.cshtml" />
+    <Content Include="Areas\Permess\Views\Sales\EditSIProduct.cshtml" />
+    <Content Include="Areas\Permess\Views\Sales\DeliveryQuantities.cshtml" />
+    <Content Include="Areas\Permess\Views\Sales\EditDeliveryQuantity.cshtml" />
+    <Content Include="Areas\Permess\Views\Sales\EditCash.cshtml" />
+    <Content Include="Areas\Permess\Views\Sales\EditLCStatement.cshtml" />
+    <Content Include="Areas\Permess\Views\Sales\EditOrderDetails.cshtml" />
+    <Content Include="Areas\Permess\Views\Sales\OrdersReport.cshtml" />
+    <Content Include="Areas\Global\Views\GlobalData\EditUserRole.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -7451,6 +7467,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902060722286_productionAndProcessChange.resx">
       <DependentUpon>201902060722286_productionAndProcessChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902111739245_cashDetails.resx">
+      <DependentUpon>201902111739245_cashDetails.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

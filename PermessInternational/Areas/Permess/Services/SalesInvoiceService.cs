@@ -318,9 +318,78 @@ namespace PermessInternational.Areas.Permess.Services
             return details;
         }
 
-        public void UpdateSIDocumentDetails(SIDocumentDetails sIDocument, int userId, int concernId)
+        public void UpdateCashDetails(CashDetails cashDetails, int concernID, int userId, int code)
         {
-            var doc = _context.SIDocumentDetails.FirstOrDefault(m=>m.SICode==sIDocument.SICode);
+            var cash = _context.CashDetails.FirstOrDefault(x=>x.SICode== code.ToString());
+            cash.BillingDate = cashDetails.BillingDate;
+            cash.BillNo = cashDetails.BillNo;
+            cash.ChalanInfo = cashDetails.ChalanInfo;
+            cash.ComissionUSD = cashDetails.ComissionUSD;
+            cash.CreationDate = DateTime.Now;
+            cash.Creator = userId;
+            cash.Description = cashDetails.Description;
+            cash.FromDestination = cashDetails.FromDestination;
+            cash.ToDestination = cashDetails.ToDestination;
+            _context.SaveChanges();
+        }
+
+        public void UpdateDeliveryQuantity(DeliveryQuantity deliveryQuantity, int userId, int concernId, int id)
+        {
+            
+            using (DbContextTransaction transaction = _context.Database.BeginTransaction())
+            {
+                var delivery = _context.DeliveryQuantities.FirstOrDefault(x => x.DeliveryQuantityID == id);
+                delivery.Quantity = deliveryQuantity.Quantity;
+                delivery.ConcernId = concernId;
+                delivery.Creator = userId;
+                delivery.ProductCode = deliveryQuantity.ProductCode;
+                _context.SaveChanges();
+
+                var product = _context.SRIProductDetails.FirstOrDefault(x=>x.SICode== deliveryQuantity.ProductCode);
+                product.DeliveryQuantity = deliveryQuantity.Quantity;
+                _context.SaveChanges();
+
+                transaction.Commit();
+
+            }
+        }
+
+        public void UpdateLCStatement(LCStatement lCStatement, int concernID, int userId, int code)
+        {
+            var lc = _context.LCStatements.FirstOrDefault(x=>x.SICode== code.ToString());
+            lc.BankName = lCStatement.BankName;
+            lc.BankSubDate = lCStatement.BankSubDate;
+            lc.Comission = lCStatement.Comission;
+            lc.Description = lCStatement.Description;
+            lc.ExpiraionDate = lCStatement.ExpiraionDate;
+            lc.FileNo = lCStatement.FileNo;
+            lc.HSCode = lCStatement.HSCode;
+            lc.LCDate = lCStatement.LCDate;
+            lc.LCNumber = lCStatement.LCNumber;
+            lc.LCStatus = lCStatement.LCStatus;
+            lc.PartyName = lCStatement.PartyName;
+            lc.PaymentClause = lCStatement.PaymentClause;
+            lc.RealiseValue = lCStatement.RealiseValue;
+            lc.ShipmentDate = lCStatement.ShipmentDate;
+            lc.Tenor = lCStatement.Tenor;
+            lc.Value = lCStatement.Value;
+            _context.SaveChanges();
+        }
+
+        public void UpdateOrderDetails(OrderDetails orderDetails, int concernID, int userId, int code)
+        {
+            var order = _context.OrderDetails.FirstOrDefault(x=>x.SICode==code.ToString());
+            order.ApprovalId = orderDetails.ApprovalId;
+            order.BuyerOrderRef = orderDetails.BuyerOrderRef;
+            order.DeliveryTypeId = orderDetails.DeliveryTypeId;
+            order.OrderDetail = orderDetails.OrderDetail;
+            order.SICode = orderDetails.SICode;
+            _context.SaveChanges();
+        }
+
+        public void UpdateSIDocumentDetails(SIDocumentDetails sIDocument, int userId, int concernId,string code)
+        {
+            var doc = _context.SIDocumentDetails.FirstOrDefault(m=>m.SICode== code);
             doc.ApprovedStatus = sIDocument.ApprovedStatus;
             doc.Bank = sIDocument.Bank;
             doc.Buyer = sIDocument.Buyer;
@@ -345,13 +414,12 @@ namespace PermessInternational.Areas.Permess.Services
             doc.PONumber = sIDocument.PONumber;
             doc.Revised = sIDocument.Revised;
             doc.SICode = sIDocument.SICode;
-            doc.SIDocumentDetId = sIDocument.SIDocumentDetId;
             doc.SIName = sIDocument.SIName;
             doc.Style = sIDocument.Style;
             _context.SaveChanges();
         }
 
-        public void UpdateSIProductDetails(SIProductDetails sIProductDetails, int userId, int concernId)
+        public void UpdateSIProductDetails(SIProductDetails sIProductDetails, int userId, int concernId,string Code)
         {
             var code = sIProductDetails.ProductId + "" + sIProductDetails.ArticleId + "" + sIProductDetails.WidthId + "" + sIProductDetails.ConstructionId + "" + sIProductDetails.SoftnessId + "" + sIProductDetails.SourceId + "" + sIProductDetails.ColorId;
             var productCode = _context.ProductNames.FirstOrDefault(m => m.ProductCode == code);
@@ -371,7 +439,7 @@ namespace PermessInternational.Areas.Permess.Services
                     _context.ProductNames.Add(product);
                     _context.SaveChanges();
 
-                    var prop = _context.SIProductDetails.FirstOrDefault(m => m.SICode == sIProductDetails.SICode);
+                    var prop = _context.SIProductDetails.FirstOrDefault(m => m.SICode == Code);
                     prop.AltArticle = sIProductDetails.AltArticle;
                     prop.ArticleId = sIProductDetails.ArticleId;
                     prop.ColorId = sIProductDetails.ColorId;
@@ -382,14 +450,16 @@ namespace PermessInternational.Areas.Permess.Services
                     prop.OrderQuantity = sIProductDetails.OrderQuantity;
                     prop.OverInvoice = sIProductDetails.OverInvoice;
                     prop.ProductId = sIProductDetails.ProductId;
-                    prop.SICode = sIProductDetails.SICode;
+                    //prop.SICode = sIProductDetails.SICode;
                     prop.SoftnessId = sIProductDetails.SoftnessId;
                     prop.SourceId = sIProductDetails.SourceId;
                     prop.UnitPrice = sIProductDetails.UnitPrice;
                     prop.WidthId = sIProductDetails.WidthId;
-
                     _context.SaveChanges();
 
+                    var quantity = _context.DeliveryQuantities.FirstOrDefault(x=>x.ProductCode==Code);
+                    quantity.Quantity = sIProductDetails.DeliveryQuantity;
+                   _context.SaveChanges();
                     transaction.Commit();
 
                 }
@@ -406,12 +476,16 @@ namespace PermessInternational.Areas.Permess.Services
                     prop.OrderQuantity = sIProductDetails.OrderQuantity;
                     prop.OverInvoice = sIProductDetails.OverInvoice;
                     prop.ProductId = sIProductDetails.ProductId;
-                    prop.SICode = sIProductDetails.SICode;
+                    //prop.SICode = sIProductDetails.SICode;
                     prop.SoftnessId = sIProductDetails.SoftnessId;
                     prop.SourceId = sIProductDetails.SourceId;
                     prop.UnitPrice = sIProductDetails.UnitPrice;
                     prop.WidthId = sIProductDetails.WidthId;
 
+                    _context.SaveChanges();
+
+                    var quantity = _context.DeliveryQuantities.FirstOrDefault(x => x.ProductCode == Code);
+                    quantity.Quantity = sIProductDetails.DeliveryQuantity;
                     _context.SaveChanges();
 
                     transaction.Commit();

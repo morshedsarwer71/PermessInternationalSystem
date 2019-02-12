@@ -15,8 +15,8 @@ namespace PermessInternational.Areas.Permess.Models
         public DateTime BillingDate { get; set; }
         public decimal TotalReceived { get; set; }
         public string ChalanInfo { get; set; }
-        public string FromDestination { get; set; }
-        public string ToDestination { get; set; }
+        public int FromDestination { get; set; }
+        public int ToDestination { get; set; }
         public decimal USD { get; set; }
         public decimal ComissionUSD { get; set; }
         public string Description { get; set; }

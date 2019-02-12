@@ -27,5 +27,7 @@ namespace PermessInternational.Areas.Permess.Interfaces
         IEnumerable<Status> Statuses();
         IEnumerable<Length> Lengths();
         IEnumerable<DeliveryType> DeliveryTypes();
+        IEnumerable<PaymentClause> PaymentClauses();
+        IEnumerable<Tenor> Tenors();
     }
 }

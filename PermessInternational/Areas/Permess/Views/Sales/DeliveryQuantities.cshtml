@@ -1,0 +1,42 @@
+﻿@model IEnumerable<PermessInternational.Areas.Permess.Models.DeliveryQuantity>
+<section class="content-header">
+    <h1>
+        Delivery Quantities
+        <small>delivery quantities list</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#" )"><i class="fa fa-dashboard"></i> Home</a></li>
+    </ol>
+</section>
+<section class="content">
+    <div class="box" id="lcStatement">
+        <div class="box-body">
+            <div class="col-md-6 col-sm-6">
+                @{ var sl = 0;}
+                <table class="table table-bordered table-responsive">
+                    <thead>
+                        <tr>
+                            <th style="width: 10px">#</th>
+                            <th>Code</th>
+                            <th>Quantity</th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            sl++;
+                            <tr>
+                                <td>@sl</td>
+                                <td>@item.ProductCode</td>
+                                <td>@item.Quantity</td>
+                                <td><a href="@Url.Action("EditDeliveryQuantity","Sales",new { id=item.DeliveryQuantityID})"><i class="fa fa-pencil"></i></a></td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

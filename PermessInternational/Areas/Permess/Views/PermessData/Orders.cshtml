@@ -33,10 +33,8 @@
                                     <th>Payment Method</th>
                                     <th>Add Quantity</th>
                                     <th>Cash</th>
-                                    <th>Cash Details</th>
                                     <th>L.C</th>
                                     <th>Order Detail</th>
-                                    <th>Update</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -75,7 +73,6 @@
                                     @if (item.PaymentMethod == "Cash" || item.PaymentMethod == "Cheque" || item.PaymentMethod == "TT Payment")
                                     {
                                         <td class="text-center"><a href="@Url.Action("AddCashDeails", "Sales", new { id = item.SIDocumentCode })"><i class="fa fa-plus" style="font-size:25px;"></i></a></td>
-                                        <td class="text-center"><a href="@Url.Action("AddCashDeails", "Sales", new { id = item.SIDocumentCode })"><i class="fa fa-eye" style="font-size:25px;"></i></a></td>
                                     }
                                     else
                                     {
@@ -92,7 +89,6 @@
                                         <td class="text-center">-</td>
                                     }
                                     <td class="text-center"><a href="@Url.Action("OrderDetails","Sales",new { id=item.SIDocumentCode})"><i class="fa fa-plus" style="font-size:25px;"></i></a></td>
-                                    @*<td class="text-center"><a href="@Url.Action("UpdateSalesInvoiceInfo", "Sales", new { id = item.SIDocumentCode })"><i class="fa fa-pencil" style="font-size:25px;"></i></a></td>*@
 
                                 </tr>
 

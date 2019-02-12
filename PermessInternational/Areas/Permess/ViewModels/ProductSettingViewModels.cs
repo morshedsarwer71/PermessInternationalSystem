@@ -22,6 +22,17 @@ namespace PermessInternational.Areas.Permess.ViewModels
         public IEnumerable<Company> Companies { get; set; }
         public IEnumerable<Region> Regions { get; set; }
         public SIDocumentDetails Details { get; set; }
+        public SIProductDetails ProductDetails { get; set; }
+        public CashDetails CashDetails { get; set; }
+        public LCStatement LCStatements { get; set; }
+        public OrderDetails OrderDetails { get; set; }
         public IEnumerable<YesNoModel> YesNoModels { get;set;}
+        public IEnumerable<PaymentMethod> PaymentMethods { get;set;}
+        public IEnumerable<Bank> Banks { get;set;}
+        public IEnumerable<Status> Statuses { get;set;}
+        public IEnumerable<Length> Lengths { get;set;}
+        public IEnumerable<DeliveryType> DeliveryTypes { get;set;}
+        public IEnumerable<PaymentClause> PaymentClauses { get;set;}
+        public IEnumerable<Tenor> Tenors { get;set;}
     }
 }

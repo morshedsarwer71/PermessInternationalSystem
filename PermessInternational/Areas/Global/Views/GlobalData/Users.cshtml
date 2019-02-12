@@ -29,6 +29,7 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Role</th>
+                                <th>Edit</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -50,6 +51,7 @@
                                     <td>@item.Name</td>
                                     <td>@item.EmailAddress</td>
                                     <td>@role</td>
+                                    <td><a href="@Url.Action("EditUserRole","GlobalData",new { id=item.UserID})"><i class="fa fa-pencil"></i></a></td>
                                     @*<td><a href="@Url.Action("UpdateBuyer","InventoryData",new {id=item.UserID })"><i class="fa fa-pencil"></i></a></td>
                                         <td style="color:red"><a href="" onclick="Delete(' @item.UserID ')"><i class="fa fa-trash"></i></a></td>*@
                                 </tr>

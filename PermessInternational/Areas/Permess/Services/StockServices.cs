@@ -129,6 +129,47 @@ namespace PermessInternational.Areas.Permess.Services
             }            
         }
 
+        public IEnumerable<ResponseOrders> OrdersReport(string fromDate, string toDate, int lcId, int deliveryId, int paymentMethodId, int companyId)
+        {
+            List<ResponseOrders> responses = new List<ResponseOrders>();
+            using (var command = _context.Database.Connection.CreateCommand())
+            {
+                command.CommandText = "Permess_Order_Reporting @fromDate,@toDate,@LcId,@DeliveryId,@PaymentMethod,@companyId";
+                command.Parameters.Add(new SqlParameter("@fromDate", fromDate));
+                command.Parameters.Add(new SqlParameter("@toDate", toDate));
+                command.Parameters.Add(new SqlParameter("@LcId", lcId));
+                command.Parameters.Add(new SqlParameter("@DeliveryId", deliveryId));
+                command.Parameters.Add(new SqlParameter("@PaymentMethod", paymentMethodId));
+                command.Parameters.Add(new SqlParameter("@companyId", companyId));
+                _context.Database.Connection.Open();
+                using (var result = command.ExecuteReader())
+                {
+                    if (result.HasRows)
+                    {
+                        while (result.Read())
+                        {
+                            responses.Add(new ResponseOrders()
+                            {
+                                SICode = Convert.ToString(result[0]),
+                                Date = Convert.ToString(result[1]),
+                                Companyname = Convert.ToString(result[2]),
+                                OrderQuantity = Convert.ToDecimal(result[3]),
+                                NetPrice = Convert.ToDecimal(result[4]),
+                                OverInvoice = Convert.ToDecimal(result[5]),
+                                BuyerRef = Convert.ToString(result[6]),
+                                LC = Convert.ToString(result[7]),
+                                Delivery = Convert.ToString(result[8]),
+                                PaymentMethod = Convert.ToString(result[9]),
+                                Quantity = Convert.ToDecimal(result[10])
+                            });
+                        }
+                    }
+                }
+                _context.Database.Connection.Close();
+            }
+            return responses;
+        }
+
         public IEnumerable<ResponseStocks> RawMaterialsStocks()
         {
             List<ResponseStocks> responses = new List<ResponseStocks>();

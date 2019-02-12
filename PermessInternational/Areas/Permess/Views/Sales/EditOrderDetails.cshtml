@@ -1,8 +1,8 @@
 ﻿@model PermessInternational.Areas.Permess.ViewModels.ProductSettingViewModels
 <section class="content-header">
     <h1>
-        Add Order Details
-        <small>adding new order information</small>
+        Edit Order Details
+        <small>editing order information</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#" )"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -14,26 +14,33 @@
     <div class="box">
         <div class="box-body">
             <div class="col-md-6 col-sm-6">
-                @using (Html.BeginForm("OrderDetails", "Sales", FormMethod.Post))
+                @using (Html.BeginForm("EditOrderDetails", "Sales", FormMethod.Post))
                 {
                     <div class="form-group">
                         <label class="col-form-label">P.I Code</label>
-                        <input value="@ViewBag.PI" readonly="readonly" type="text" class="form-control" />
+                        <input value="@Model.OrderDetails.SICode" name="SICode" readonly="readonly" type="text" class="form-control" />
                     </div>
                     <div class="form-group">
                         <label class="col-form-label">Buyer Order Ref</label>
-                        <textarea class="form-control" name="BuyerOrderRef"></textarea>
+                        <textarea class="form-control" value="@Model.OrderDetails.BuyerOrderRef" name="BuyerOrderRef"></textarea>
                     </div>
                     <div class="form-group">
                         <label class="col-form-label">Order Detail</label>
-                        <textarea class="form-control" name="OrderDetail"></textarea>
+                        <textarea class="form-control" value="@Model.OrderDetails.OrderDetail" name="OrderDetail"></textarea>
                     </div>
                     <div class="form-group">
                         <label class="col-form-label">Delivery Status</label>
                         <select class="form-control" name="DeliveryTypeId">
                             @foreach (var item in Model.Statuses)
                             {
-                                <option value="@item.Id">@item.Name</option>
+                                if (Model.OrderDetails.DeliveryTypeId == item.Id)
+                                {
+                                    <option selected="selected" value="@item.Id">@item.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
                             }
                         </select>
                     </div>
@@ -42,12 +49,19 @@
                         <select class="form-control" name="ApprovalId">
                             @foreach (var item in Model.YesNoModels)
                             {
-                                <option value="@item.Id">@item.Name</option>
+                                if (Model.OrderDetails.ApprovalId == item.Id)
+                                {
+                                    <option selected="selected" value="@item.Id">@item.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
                             }
                         </select>
                     </div>
                     <div class="form-group">
-                        <button id="btnSave" type="submit" value="submit" class="btn btn-info">SUBMIT</button>
+                        <button id="btnSave" type="submit" value="submit" class="btn btn-info">UPDATE</button>
                     </div>
                 }
             </div>
