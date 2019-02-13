@@ -51,7 +51,7 @@ namespace PermessInternational.Areas.Global.Controllers
                     Session["UserId"] = Convert.ToInt32(query.UserID);
                     var userName = _context.UserRoles.FirstOrDefault(x => x.UserRoleId == query.UserRole);
                     Session["RoleName"] = Convert.ToString(userName.UserRoleName);
-                    Session["RoleId"] = Convert.ToString(userName.UserRoleId);
+                    Session["RoleId"] = Convert.ToInt32(query.UserRole);
                     Session["UserName"] = Convert.ToString(query.Name);
                     return RedirectToAction("Index", "PermessData", new { Area = "Permess" });
                 }

@@ -157,7 +157,7 @@ namespace PermessInternational.Areas.Permess.Services
                     _context.DeliveryQuantities.Add(delivery);
                     _context.SaveChanges();
 
-                     transaction.Commit();
+                    transaction.Commit();
 
                 }
                 else
@@ -196,6 +196,52 @@ namespace PermessInternational.Areas.Permess.Services
             var sales = _context.SRIProductDetails.FirstOrDefault(m => m.SRIProductDetId == id);
             _context.SRIProductDetails.Remove(sales);
             _context.SaveChanges();
+        }
+
+        public void DeleteInvoice(int id)
+        {
+            using (DbContextTransaction transaction = _context.Database.BeginTransaction())
+            {
+                var document = _context.SIDocumentDetails.FirstOrDefault(x=>x.SICode==id.ToString());
+                var product = _context.SIProductDetails.FirstOrDefault(x=>x.SICode==id.ToString());
+                var Order = _context.OrderDetails.FirstOrDefault(x=>x.SICode==id.ToString());
+                var cash = _context.CashDetails.FirstOrDefault(x=>x.SICode==id.ToString());
+                var lc = _context.LCStatements.FirstOrDefault(x=>x.SICode==id.ToString());
+                var quantity = _context.DeliveryQuantities.Where(x=>x.ProductCode == id.ToString()).ToList();
+
+                if (document != null)
+                {
+                    _context.SIDocumentDetails.Remove(document);
+                    _context.SaveChanges();
+                }
+               if(product!=null)
+                {
+                    _context.SIProductDetails.Remove(product);
+                    _context.SaveChanges();
+                }
+                if (Order != null)
+                {
+                    _context.OrderDetails.Remove(Order);
+                    _context.SaveChanges();
+                }
+                if (cash != null)
+                {
+                    _context.CashDetails.Remove(cash);
+                    _context.SaveChanges();
+                }
+                if (lc != null)
+                {
+                    _context.LCStatements.Remove(lc);
+                    _context.SaveChanges();
+                }
+                if (quantity != null)
+                {
+                    _context.DeliveryQuantities.RemoveRange(quantity);
+                    _context.SaveChanges();
+                }
+                transaction.Commit();
+
+            }
         }
 
         public IEnumerable<Region> Regions(int concernId)
@@ -320,7 +366,7 @@ namespace PermessInternational.Areas.Permess.Services
 
         public void UpdateCashDetails(CashDetails cashDetails, int concernID, int userId, int code)
         {
-            var cash = _context.CashDetails.FirstOrDefault(x=>x.SICode== code.ToString());
+            var cash = _context.CashDetails.FirstOrDefault(x => x.SICode == code.ToString());
             cash.BillingDate = cashDetails.BillingDate;
             cash.BillNo = cashDetails.BillNo;
             cash.ChalanInfo = cashDetails.ChalanInfo;
@@ -335,7 +381,7 @@ namespace PermessInternational.Areas.Permess.Services
 
         public void UpdateDeliveryQuantity(DeliveryQuantity deliveryQuantity, int userId, int concernId, int id)
         {
-            
+
             using (DbContextTransaction transaction = _context.Database.BeginTransaction())
             {
                 var delivery = _context.DeliveryQuantities.FirstOrDefault(x => x.DeliveryQuantityID == id);
@@ -345,7 +391,7 @@ namespace PermessInternational.Areas.Permess.Services
                 delivery.ProductCode = deliveryQuantity.ProductCode;
                 _context.SaveChanges();
 
-                var product = _context.SRIProductDetails.FirstOrDefault(x=>x.SICode== deliveryQuantity.ProductCode);
+                var product = _context.SRIProductDetails.FirstOrDefault(x => x.SICode == deliveryQuantity.ProductCode);
                 product.DeliveryQuantity = deliveryQuantity.Quantity;
                 _context.SaveChanges();
 
@@ -356,7 +402,7 @@ namespace PermessInternational.Areas.Permess.Services
 
         public void UpdateLCStatement(LCStatement lCStatement, int concernID, int userId, int code)
         {
-            var lc = _context.LCStatements.FirstOrDefault(x=>x.SICode== code.ToString());
+            var lc = _context.LCStatements.FirstOrDefault(x => x.SICode == code.ToString());
             lc.BankName = lCStatement.BankName;
             lc.BankSubDate = lCStatement.BankSubDate;
             lc.Comission = lCStatement.Comission;
@@ -378,7 +424,7 @@ namespace PermessInternational.Areas.Permess.Services
 
         public void UpdateOrderDetails(OrderDetails orderDetails, int concernID, int userId, int code)
         {
-            var order = _context.OrderDetails.FirstOrDefault(x=>x.SICode==code.ToString());
+            var order = _context.OrderDetails.FirstOrDefault(x => x.SICode == code.ToString());
             order.ApprovalId = orderDetails.ApprovalId;
             order.BuyerOrderRef = orderDetails.BuyerOrderRef;
             order.DeliveryTypeId = orderDetails.DeliveryTypeId;
@@ -387,9 +433,9 @@ namespace PermessInternational.Areas.Permess.Services
             _context.SaveChanges();
         }
 
-        public void UpdateSIDocumentDetails(SIDocumentDetails sIDocument, int userId, int concernId,string code)
+        public void UpdateSIDocumentDetails(SIDocumentDetails sIDocument, int userId, int concernId, string code)
         {
-            var doc = _context.SIDocumentDetails.FirstOrDefault(m=>m.SICode== code);
+            var doc = _context.SIDocumentDetails.FirstOrDefault(m => m.SICode == code);
             doc.ApprovedStatus = sIDocument.ApprovedStatus;
             doc.Bank = sIDocument.Bank;
             doc.Buyer = sIDocument.Buyer;
@@ -419,7 +465,7 @@ namespace PermessInternational.Areas.Permess.Services
             _context.SaveChanges();
         }
 
-        public void UpdateSIProductDetails(SIProductDetails sIProductDetails, int userId, int concernId,string Code)
+        public void UpdateSIProductDetails(SIProductDetails sIProductDetails, int userId, int concernId, string Code)
         {
             var code = sIProductDetails.ProductId + "" + sIProductDetails.ArticleId + "" + sIProductDetails.WidthId + "" + sIProductDetails.ConstructionId + "" + sIProductDetails.SoftnessId + "" + sIProductDetails.SourceId + "" + sIProductDetails.ColorId;
             var productCode = _context.ProductNames.FirstOrDefault(m => m.ProductCode == code);
@@ -457,9 +503,9 @@ namespace PermessInternational.Areas.Permess.Services
                     prop.WidthId = sIProductDetails.WidthId;
                     _context.SaveChanges();
 
-                    var quantity = _context.DeliveryQuantities.FirstOrDefault(x=>x.ProductCode==Code);
+                    var quantity = _context.DeliveryQuantities.FirstOrDefault(x => x.ProductCode == Code);
                     quantity.Quantity = sIProductDetails.DeliveryQuantity;
-                   _context.SaveChanges();
+                    _context.SaveChanges();
                     transaction.Commit();
 
                 }

@@ -331,144 +331,177 @@
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">MAIN NAVIGATION</li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="@Url.Action("Index","GlobalData",new {Area="Global" })"><i class="fa fa-circle-o"></i> Add User </a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-pie-chart"></i>
-                            <span>Invoice</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="@Url.Action("SalesInvoiceInfo","Sales",new {Area="Permess" })"><i class="fa fa-circle-o"></i> Issue A New Purchase Invoice </a></li>
-                            <li><a href="@Url.Action("SalesReturn","Sales",new{Area="Permess" })"><i class="fa fa-circle-o"></i> Return Purchase Invoice </a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-truck"></i>
-                            <span>Machine Records</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">                            
-                            <li><a href="@Url.Action("MachinePurchase","Sales",new{Area="Permess" })"><i class="fa fa-circle-o"></i> Machine Purchase </a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-inbox"></i>
-                            <span>Marketing</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="@Url.Action("Orders","PermessData",new{Area="Permess" })"><i class="fa fa-circle-o"></i> Orders </a></li>
-                            <li><a href="@Url.Action("EditOrders","PermessData",new{Area="Permess" })"><i class="fa fa-circle-o"></i> Edit Orders </a></li>
-                            <li><a href="@Url.Action("OrdersReport","Sales",new{Area="Permess" })"><i class="fa fa-circle-o"></i>  Orders Report</a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-money"></i>
-                            <span>Commercial & Accounts </span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="@Url.Action("CashDetails","PermessData",new{Area="Permess" })"><i class="fa fa-circle-o"></i> Cash/Check/TT </a></li>
-                            <li><a href="@Url.Action("LCStatemets","PermessData",new{Area="Permess" })"><i class="fa fa-circle-o"></i> L.C Payments </a></li>
-                            <li><a href="@Url.Action("ExportIssue","PermessData",new{Area="Permess" })"><i class="fa fa-circle-o"></i> Export Issues </a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-cubes"></i>
-                            <span>Stock</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="@Url.Action("ImportGood","PermessData",new{Area="Permess" })"><i class="fa fa-circle-o"></i> Import Goods </a></li>
-                            @*<li><a href="@Url.Action("RawMaterials","PermessData",new{Area="Permess" })"><i class="fa fa-circle-o"></i> Raw Materials </a></li>*@
-                            <li><a href="@Url.Action("RawMaterialsStock","PermessData",new{Area="Permess" })"><i class="fa fa-circle-o"></i> Raw Materials </a></li>
-                            @*<li><a href="@Url.Action("SemiFinishedGoods","PermessData",new{Area="Permess" })"><i class="fa fa-circle-o"></i> Semi Finished Goods </a></li>*@
-                            <li><a href="@Url.Action("SemiFinishedGoodsStocks","PermessData",new{Area="Permess" })"><i class="fa fa-circle-o"></i> Semi Finished Goods </a></li>
-                            @*<li><a href="@Url.Action("FinishedGoods","PermessData",new{Area="Permess" })"><i class="fa fa-circle-o"></i> Finished Goods </a></li>*@
-                            <li><a href="@Url.Action("FinishedGoodsStocks","PermessData",new{Area="Permess" })"><i class="fa fa-circle-o"></i> Finished Goods </a></li>
-                            <li><a href="@Url.Action("SortStockes","PermessData",new{Area="Permess" })"><i class="fa fa-circle-o"></i> Short Stock </a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-product-hunt"></i>
-                            <span>Production</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="@Url.Action("ProductionOrder","Production",new{Area="Permess" })"><i class="fa fa-circle-o"></i> New Production Order </a></li>
-                            <li><a href="@Url.Action("ProductionProces","Production",new{Area="Permess" })"><i class="fa fa-circle-o"></i> Production Process </a></li>                       
-                            @*<li><a href="#"><i class="fa fa-circle-o"></i> Production Progress </a></li>*@
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-bar-chart"></i>
-                            <span>Reports</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="#"><i class="fa fa-circle-o"></i> Sales Report </a></li>
-                            <li><a href="#"><i class="fa fa-circle-o"></i> Purchase Invoice </a></li>
-                            <li><a href="@Url.Action("Stockes","PermessData",new{Area="Permess" })"><i class="fa fa-circle-o"></i> Stock Report </a></li>
-                            <li><a href="@Url.Action("ProductionOrder","Production",new {Area="Permess" })"><i class="fa fa-circle-o"></i> Production Report </a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-cogs"></i>
-                            <span>Settings</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="@Url.Action("Company","PermessData",new{Area="Permess" })"><i class="fa fa-circle-o"></i> Company </a></li>
-                            <li><a href="#"><i class="fa fa-circle-o"></i> Region </a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-tags"></i>
-                            <span>Product Setting</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="@Url.Action("Product","PermessData",new{Area="Permess" })"><i class="fa fa-circle-o"></i> Product </a></li>
-                            <li><a href="@Url.Action("ProductSetting","PermessData",new{Area="Permess" })"><i class="fa fa-circle-o"></i> Product Setting </a></li>
-                        </ul>
-                    </li>
+                    @{var role = Convert.ToInt32(Session["RoleId"]); }
+                    @if (role == 1)
+                    {
+
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="@Url.Action("Index", "GlobalData", new { Area = "Global" })"><i class="fa fa-circle-o"></i> Add User </a></li>
+                            </ul>
+                        </li>
+                    }
+                    @if (role == 1|| role == 5)
+                    {
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-pie-chart"></i>
+                                <span>Invoice</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="@Url.Action("SalesInvoiceInfo", "Sales", new { Area = "Permess" })"><i class="fa fa-circle-o"></i> Issue A New Purchase Invoice </a></li>
+                                <li><a href="@Url.Action("SalesReturn", "Sales", new { Area = "Permess" })"><i class="fa fa-circle-o"></i> Return Purchase Invoice </a></li>
+                            </ul>
+                        </li>
+                    }
+                    @if (role == 1 || role == 5)
+                    {
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-truck"></i>
+                                <span>Machine Records</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="@Url.Action("MachinePurchase", "Sales", new { Area = "Permess" })"><i class="fa fa-circle-o"></i> Machine Purchase </a></li>
+                            </ul>
+                        </li>
+                    }
+                    @if (role == 1 || role == 5 || role == 6)
+                    {
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-inbox"></i>
+                                <span>Marketing</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="@Url.Action("Orders", "PermessData", new { Area = "Permess" })"><i class="fa fa-circle-o"></i> Orders </a></li>
+                                <li><a href="@Url.Action("EditOrders", "PermessData", new { Area = "Permess" })"><i class="fa fa-circle-o"></i> Edit Orders </a></li>
+                                <li><a href="@Url.Action("DeleteOrders", "PermessData", new { Area = "Permess" })"><i class="fa fa-circle-o"></i> Delete Orders </a></li>
+                                <li><a href="@Url.Action("OrdersReport", "Sales", new { Area = "Permess" })"><i class="fa fa-circle-o"></i>  Orders Report</a></li>
+                            </ul>
+                        </li>
+                    }
+                    @if (role == 1 || role == 5)
+                    {
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-money"></i>
+                                <span>Commercial & Accounts </span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="@Url.Action("CashDetails", "PermessData", new { Area = "Permess" })"><i class="fa fa-circle-o"></i> Cash/Check/TT </a></li>
+                                <li><a href="@Url.Action("LCStatemets", "PermessData", new { Area = "Permess" })"><i class="fa fa-circle-o"></i> L.C Payments </a></li>
+                                <li><a href="@Url.Action("ExportIssue", "PermessData", new { Area = "Permess" })"><i class="fa fa-circle-o"></i> Export Issues </a></li>
+                            </ul>
+                        </li>
+                    }
+                    @if (role == 1 || role == 5 || role == 6 || role == 7 || role == 8)
+                    {
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-cubes"></i>
+                                <span>Store & Stock</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="@Url.Action("ImportGood", "PermessData", new { Area = "Permess" })"><i class="fa fa-circle-o"></i> Import Goods </a></li>
+                                @*<li><a href="@Url.Action("RawMaterials","PermessData",new{Area="Permess" })"><i class="fa fa-circle-o"></i> Raw Materials </a></li>*@
+                                <li><a href="@Url.Action("RawMaterialsStock", "PermessData", new { Area = "Permess" })"><i class="fa fa-circle-o"></i> Raw Materials </a></li>
+                                @*<li><a href="@Url.Action("SemiFinishedGoods","PermessData",new{Area="Permess" })"><i class="fa fa-circle-o"></i> Semi Finished Goods </a></li>*@
+                                <li><a href="@Url.Action("SemiFinishedGoodsStocks", "PermessData", new { Area = "Permess" })"><i class="fa fa-circle-o"></i> Semi Finished Goods </a></li>
+                                @*<li><a href="@Url.Action("FinishedGoods","PermessData",new{Area="Permess" })"><i class="fa fa-circle-o"></i> Finished Goods </a></li>*@
+                                <li><a href="@Url.Action("FinishedGoodsStocks", "PermessData", new { Area = "Permess" })"><i class="fa fa-circle-o"></i> Finished Goods </a></li>
+                                <li><a href="@Url.Action("SortStockes", "PermessData", new { Area = "Permess" })"><i class="fa fa-circle-o"></i> Short Stock </a></li>
+                            </ul>
+                        </li>
+                    }
+                    @if (role == 1 || role == 5 || role == 6 || role == 8)
+                    {
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-product-hunt"></i>
+                                <span>Production</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="@Url.Action("ProductionOrder", "Production", new { Area = "Permess" })"><i class="fa fa-circle-o"></i> New Production Order </a></li>
+                                <li><a href="@Url.Action("ProductionProces", "Production", new { Area = "Permess" })"><i class="fa fa-circle-o"></i> Production Process </a></li>
+                                @*<li><a href="#"><i class="fa fa-circle-o"></i> Production Progress </a></li>*@
+                            </ul>
+                        </li>
+                    }
+                    @if (role == 1 || role == 5 || role == 7)
+                    {
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-bar-chart"></i>
+                                <span>Reports</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="#"><i class="fa fa-circle-o"></i> Sales Report </a></li>
+                                <li><a href="#"><i class="fa fa-circle-o"></i> Purchase Invoice </a></li>
+                                <li><a href="@Url.Action("Stockes", "PermessData", new { Area = "Permess" })"><i class="fa fa-circle-o"></i> Stock Report </a></li>
+                                <li><a href="@Url.Action("ProductionOrder", "Production", new { Area = "Permess" })"><i class="fa fa-circle-o"></i> Production Report </a></li>
+                            </ul>
+                        </li>
+                    }
+                    @if (role == 1 || role == 5)
+                    {
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-cogs"></i>
+                                <span>Settings</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="@Url.Action("Company", "PermessData", new { Area = "Permess" })"><i class="fa fa-circle-o"></i> Company </a></li>
+                                <li><a href="#"><i class="fa fa-circle-o"></i> Region </a></li>
+                            </ul>
+                        </li>
+                    }
+                    @if (role == 1 || role == 5 || role == 6 || role == 7)
+                    {
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-tags"></i>
+                                <span>Product Setting</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="@Url.Action("Product", "PermessData", new { Area = "Permess" })"><i class="fa fa-circle-o"></i> Product </a></li>
+                                <li><a href="@Url.Action("ProductSetting", "PermessData", new { Area = "Permess" })"><i class="fa fa-circle-o"></i> Product Setting </a></li>
+                            </ul>
+                        </li>
+                    }
                 </ul>
             </section>
             <!-- /.sidebar -->

@@ -7284,6 +7284,7 @@
     <Content Include="Areas\Permess\Views\Sales\EditOrderDetails.cshtml" />
     <Content Include="Areas\Permess\Views\Sales\OrdersReport.cshtml" />
     <Content Include="Areas\Global\Views\GlobalData\EditUserRole.cshtml" />
+    <Content Include="Areas\Permess\Views\PermessData\DeleteOrders.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
