@@ -2,8 +2,8 @@
 @{ Layout = null;}
 <section class="content-header">
     <h1>
-        Production Order Index
-        <small>preview of production order index</small>
+        Production Order Lists
+        <small>preview of production order lists</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
@@ -45,7 +45,9 @@
                                 <th>Status</th>
                                 <th>Time</th>
                                 <th>Quantity</th>
+                                <th>Third Party Status</th>
                                 <th>Raw Materials</th>
+
                                 @*<th>Go Process</th>*@
                             </tr>
                         </thead>
@@ -66,6 +68,7 @@
                                     <td>@item.Status</td>
                                     <td>@item.Time</td>
                                     <td>@item.Amount</td>
+                                    <td>@item.ThirdPartyStatus</td>
                                     <td><a href="@Url.Action("OrderRawMaterial","Production",new { id=item.OrderId})" class="btn btn-primary">Add</a></td>
                                     @*<td><a href="@Url.Action("ProductionChange", "Production", new { id = item.OrderId })" class="btn btn-primary">Process</a></td>*@
 

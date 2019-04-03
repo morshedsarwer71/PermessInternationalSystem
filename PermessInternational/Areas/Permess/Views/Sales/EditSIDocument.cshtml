@@ -175,6 +175,10 @@
                         <input type="text" name="DeliveryDate" value="@Model.Details.DeliveryDate.ToShortDateString()" class="form-control" />
                     </div>
                     <div class="form-group">
+                        <label class="col-form-label">Approx Goods Req Date</label>
+                        <input type="text" name="GoodsReqDate" value="@Model.Details.GoodsReqDate.ToShortDateString()" class="form-control" />
+                    </div>
+                    <div class="form-group">
                         <label class="col-form-label">Company</label>
                         <select class="form-control" name="CompanyId">
                             @foreach (var item in Model.Companies)

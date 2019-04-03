@@ -33,6 +33,7 @@
                 var person = $('#person').val();
                 var mobile = $('#mobile').val();
                 var address = $('#address').val();
+                var buyer = $('#txtBuyer').val();
                 $('#dvLoader').show();
                 $.ajax({
                     url: "/PermessData/AddCompany",
@@ -41,7 +42,8 @@
                         "CompanyName": name,
                         "CompanyAddress": address,
                         "ContactPerson": person,
-                        "MobileNo": mobile
+                        "MobileNo": mobile,
+                        "Buyer": buyer
                     }),
                     dataType: "json",
                     contentType: "application/json; charset=utf-8",
@@ -59,6 +61,7 @@
             $('#person').val('');
             $('#mobile').val('');
             $('#address').val('');
+            $('#txtBuyer').val('');
         }
     </script>
 }

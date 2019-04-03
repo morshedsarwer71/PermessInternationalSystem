@@ -1,0 +1,93 @@
+﻿@model PermessInternational.Areas.Permess.ViewModels.OrdersViewModels
+@{
+
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Invoice</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="~/Content/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/Content/bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="../../bower_components/Ionicons/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Content/dist/css/AdminLTE.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="~/Content/dist/css/blue.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <link href="~/Content/Site.css" rel="stylesheet" />
+</head>
+<body>
+
+    @{
+        var widhth = "";
+        var code = "";
+        var article = "";
+        var construction = "";
+        var softness = "";
+        var source = "";
+        var product = "";
+        var color = "";
+        decimal OrderQuantity = 0;
+        decimal UnitPrice = 0;
+        decimal TotalPrice = 0;
+        var deliverAddres = "";
+        var poNumber = "";
+        var Date = "";
+        var IssuedBy = "";
+        var contactPrson = "";
+        var buyer = "";
+        var goodsReq = "";
+        var payment = "";
+        var companyName = "";
+        var companyAddress = "";
+        var hsCode = "";
+    }
+    @foreach (var item in Model.Product)
+    {
+        product = item.Product;
+        article = item.Article;
+        construction = item.Construction;
+        softness = item.Softness;
+        source = item.Source;
+        widhth = item.Width;
+        code = item.Code;
+        OrderQuantity = item.OrderQuantity;
+        UnitPrice = item.UnitPrice;
+        TotalPrice = item.Amount;
+        color = item.Color;
+
+    }
+    @foreach (var item in Model.ResponseOrders)
+    {
+        deliverAddres = item.DeliveryAddress;
+        poNumber = item.PoNumber;
+        Date = item.IssueDate.ToShortDateString();
+        IssuedBy = item.IssuedBy;
+        IssuedBy = item.IssuedBy;
+        contactPrson = item.ContactPerson;
+        buyer = item.Buyer;
+        goodsReq = item.GoodsReqDate.ToShortDateString();
+        payment = item.PaymentMethod;
+        companyName = item.Companyname;
+        companyAddress = item.CompanyAddress;
+        hsCode = item.HSCode;
+
+    }
+    <section class="content">
+        <div>
+            <img src="~/Areas/Permess/Image/Pad.jpg"/>
+        </div>
+    </section>
+    <script src="~/Content/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="~/Content/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>

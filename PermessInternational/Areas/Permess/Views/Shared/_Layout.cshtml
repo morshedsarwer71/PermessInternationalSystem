@@ -392,6 +392,7 @@
                                 <li><a href="@Url.Action("Orders", "PermessData", new { Area = "Permess" })"><i class="fa fa-circle-o"></i> Orders </a></li>
                                 <li><a href="@Url.Action("EditOrders", "PermessData", new { Area = "Permess" })"><i class="fa fa-circle-o"></i> Edit Orders </a></li>
                                 <li><a href="@Url.Action("DeleteOrders", "PermessData", new { Area = "Permess" })"><i class="fa fa-circle-o"></i> Delete Orders </a></li>
+                                <li><a href="@Url.Action("PrintOrders", "PermessData", new { Area = "Permess" })"><i class="fa fa-circle-o"></i> Print Orders </a></li>
                                 <li><a href="@Url.Action("OrdersReport", "Sales", new { Area = "Permess" })"><i class="fa fa-circle-o"></i>  Orders Report</a></li>
                             </ul>
                         </li>
@@ -482,7 +483,7 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="@Url.Action("Company", "PermessData", new { Area = "Permess" })"><i class="fa fa-circle-o"></i> Company </a></li>
-                                <li><a href="#"><i class="fa fa-circle-o"></i> Region </a></li>
+                                <li><a href="@Url.Action("Region", "PermessData", new { Area = "Permess" })"><i class="fa fa-circle-o"></i> Region </a></li>
                             </ul>
                         </li>
                     }
@@ -491,7 +492,7 @@
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-tags"></i>
-                                <span>Product Setting</span>
+                                <span>Product Category</span>
                                 <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>

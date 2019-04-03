@@ -18,6 +18,7 @@ namespace PermessInternational.Areas.Permess.Interfaces
         IEnumerable<ResponseStocks> SemiFinishedStocks();
         IEnumerable<ResponseStocks> FinishedStocks();
         IEnumerable<ResponseOrders> ResponseOrders();
+        IEnumerable<ResponseOrders> ResponseOrdersByCode(string code);
         IEnumerable<ResponseOrders> OrdersReport(string fromDate,string toDate,int lcId,int deliveryId,int paymentMethodId,int companyId);
         IEnumerable<ResponseCashDetails> ResponseCashDetails();
         IEnumerable<ResponseLCStatements> ResponseLCStatements();

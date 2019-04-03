@@ -66,6 +66,9 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rotativa.1.7.3\lib\net461\Rotativa.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration.ConfigurationManager, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Configuration.ConfigurationManager.4.5.0\lib\net461\System.Configuration.ConfigurationManager.dll</HintPath>
@@ -235,6 +238,7 @@
     <Compile Include="Areas\Permess\StaticModels\Status.cs" />
     <Compile Include="Areas\Permess\StaticModels\Tenor.cs" />
     <Compile Include="Areas\Permess\StaticModels\YesNoModel.cs" />
+    <Compile Include="Areas\Permess\ValueInWords\WordValues.cs" />
     <Compile Include="Areas\Permess\ViewModels\CompanyViewModels.cs" />
     <Compile Include="Areas\Permess\ViewModels\ExportIssuesViewModels.cs" />
     <Compile Include="Areas\Permess\ViewModels\GoodsTypeViewModels.cs" />
@@ -420,11 +424,16 @@
     <Compile Include="Migrations\201902111739245_cashDetails.Designer.cs">
       <DependentUpon>201902111739245_cashDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904021921478_newUpdateforProforma.cs" />
+    <Compile Include="Migrations\201904021921478_newUpdateforProforma.Designer.cs">
+      <DependentUpon>201904021921478_newUpdateforProforma.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PermessContext\PermessDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Permess\Image\Pad.jpg" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -6709,6 +6718,10 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Rotativa\help-wkhtmltoimage.txt" />
+    <Content Include="Rotativa\help-wkhtmltopdf.txt" />
+    <Content Include="Rotativa\wkhtmltoimage.exe" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -7285,6 +7298,17 @@
     <Content Include="Areas\Permess\Views\Sales\OrdersReport.cshtml" />
     <Content Include="Areas\Global\Views\GlobalData\EditUserRole.cshtml" />
     <Content Include="Areas\Permess\Views\PermessData\DeleteOrders.cshtml" />
+    <Content Include="App_Browsers\qt.browser" />
+    <Content Include="Areas\Permess\Views\PermessData\Invoice.cshtml" />
+    <Content Include="Areas\Permess\Views\PermessData\PrintOrders.cshtml" />
+    <Content Include="Areas\Permess\Views\PermessData\Region.cshtml" />
+    <Content Include="Areas\Permess\Views\PermessData\Regions.cshtml" />
+    <Content Include="Areas\Permess\Views\PermessData\AddRegion.cshtml" />
+    <Content Include="Areas\Permess\Views\PermessData\EditRegion.cshtml" />
+    <Content Include="Areas\Permess\Views\PermessData\Proforma.cshtml" />
+    <Content Include="Areas\Permess\Image\Pad.pdf" />
+    <Content Include="Areas\Permess\Views\PermessData\Print.cshtml" />
+    <Content Include="Areas\Permess\Views\PermessData\Test.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -7331,6 +7355,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Permess\Views\PDFView\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -7471,6 +7496,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902111739245_cashDetails.resx">
       <DependentUpon>201902111739245_cashDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904021921478_newUpdateforProforma.resx">
+      <DependentUpon>201904021921478_newUpdateforProforma.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

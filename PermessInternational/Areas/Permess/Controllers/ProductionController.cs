@@ -148,7 +148,7 @@ namespace PermessInternational.Areas.Permess.Controllers
                 }
                 else
                 {
-                    TempData["sort"] = "your stock is sort";
+                    TempData["sort"] = "your stock is short";
                     return RedirectToAction(nameof(ProductionOrder));
                 }
             }

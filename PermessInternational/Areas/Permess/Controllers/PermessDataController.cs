@@ -1,7 +1,9 @@
 ﻿using PermessInternational.Areas.Permess.Interfaces;
 using PermessInternational.Areas.Permess.Models;
+using PermessInternational.Areas.Permess.ValueInWords;
 using PermessInternational.Areas.Permess.ViewModels;
 using PermessInternational.PermessContext;
+using Rotativa;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -84,6 +86,82 @@ namespace PermessInternational.Areas.Permess.Controllers
             var userId = Convert.ToInt32(Session["UserId"]);
             _buyer.AddCompany(company, concernId, userId);
             return Json("", JsonRequestBehavior.AllowGet);
+        }
+        [HttpGet]
+        public ActionResult Region()
+        {
+            var concernId = Convert.ToInt32(Session["ConcernId"]);
+            var userId = Convert.ToInt32(Session["UserId"]);
+            if (concernId > 0 && userId > 0)
+            {
+                return View();
+            }
+            return RedirectToAction("LogIn", "GlobalData", new { Area = "Global" });
+        }
+        [HttpGet]
+        public ActionResult Regions()
+        {
+            var concernId = Convert.ToInt32(Session["ConcernId"]);
+            var userId = Convert.ToInt32(Session["UserId"]);
+            if (concernId > 0 && userId > 0)
+            {
+                var reg = _context.Regions.ToList();
+                return View(reg);
+            }
+            return RedirectToAction("LogIn", "GlobalData", new { Area = "Global" });
+        }
+        [HttpGet]
+        public ActionResult AddRegion()
+        {
+            var concernId = Convert.ToInt32(Session["ConcernId"]);
+            var userId = Convert.ToInt32(Session["UserId"]);
+            if (concernId > 0 && userId > 0)
+            {
+                return View();
+            }
+            return RedirectToAction("LogIn", "GlobalData", new { Area = "Global" });
+        }
+        [HttpPost]
+        public ActionResult AddRegion(Region region)
+        {            
+            var concernId = Convert.ToInt32(Session["ConcernId"]);
+            var userId = Convert.ToInt32(Session["UserId"]);
+            if (concernId > 0 && userId > 0)
+            {
+                region.CreationDate = DateTime.Now;
+                region.ConcernId = userId;
+                _context.Regions.Add(region);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Region));
+            }
+            return RedirectToAction("LogIn", "GlobalData", new { Area = "Global" });
+        }
+        [HttpGet]
+        public ActionResult EditRegion(int id)
+        {
+            var concernId = Convert.ToInt32(Session["ConcernId"]);
+            var userId = Convert.ToInt32(Session["UserId"]);
+            if (concernId > 0 && userId > 0)
+            {
+                var reg = _context.Regions.FirstOrDefault(x=>x.RegionId==id);
+                return View(reg);
+            }
+            return RedirectToAction("LogIn", "GlobalData", new { Area = "Global" });
+        }
+        [HttpPost]
+        public ActionResult EditRegion(int id,Region region)
+        {
+            var concernId = Convert.ToInt32(Session["ConcernId"]);
+            var userId = Convert.ToInt32(Session["UserId"]);
+            if (concernId > 0 && userId > 0)
+            {
+                var reg = _context.Regions.FirstOrDefault(x => x.RegionId == id);
+                reg.RegionName = region.RegionName;
+                reg.Creator = userId;
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Region));
+            }
+            return RedirectToAction("LogIn", "GlobalData", new { Area = "Global" });
         }
         [HttpGet]
         public ActionResult Product()
@@ -584,6 +662,77 @@ namespace PermessInternational.Areas.Permess.Controllers
             }
             return RedirectToAction("LogIn", "GlobalData", new { Area = "Global" });
 
+        }
+        [HttpGet]
+        public ActionResult PrintOrders()
+        {
+            var concernId = Convert.ToInt32(Session["ConcernId"]);
+            var userId = Convert.ToInt32(Session["UserId"]);
+            if (concernId > 0 && userId > 0)
+            {
+                var order = _stock.ResponseOrders();
+                OrdersViewModels viewModels = new OrdersViewModels()
+                {
+                    ResponseOrders = order
+                };
+                return View(viewModels);
+            }
+            return RedirectToAction("LogIn", "GlobalData", new { Area = "Global" });
+
+        }
+        [HttpGet]
+        public ActionResult Print(int id)
+        {
+            var value = _context.SIDocumentDetails.FirstOrDefault(x=>x.SICode==id.ToString());
+            if (value.DeliveryType == 2)
+            {
+                return RedirectToAction("Invoice", "PermessData",new {id=id });
+            }
+            return RedirectToAction("Proforma", "PermessData", new { id = id });
+        }
+        [HttpGet]
+        public ActionResult Invoice(int id)
+        {
+            decimal total_price = 0;
+            var order = _stock.ResponseOrdersByCode(id.ToString());
+            var product = _sales.PrintProduct(id.ToString());
+            foreach (var item in product)
+            {
+                total_price = item.Amount;
+
+            }
+            WordValues wordValues = new WordValues();
+            int val = Convert.ToInt32(total_price);
+            ViewBag.ValueInWords=wordValues.NumberToWords(val);
+            OrdersViewModels viewModels = new OrdersViewModels()
+            {
+                ResponseOrders = order,
+                Product= product
+            };
+            var report = new PartialViewAsPdf("Invoice", viewModels);
+            return report;
+        }
+        [HttpGet]
+        public ActionResult Proforma(int id)
+        {
+            decimal total_price = 0;
+            var order = _stock.ResponseOrdersByCode(id.ToString());
+            var product = _sales.PrintProduct(id.ToString());
+            WordValues wordValues = new WordValues();
+            foreach (var item in product)
+            {
+                total_price = item.Amount;
+
+            }
+            int val = Convert.ToInt32(total_price);
+            ViewBag.ValueInWords = wordValues.NumberToWords(val);
+            OrdersViewModels viewModels = new OrdersViewModels()
+            {
+                ResponseOrders = order,
+                Product = product
+            };
+            var report = new PartialViewAsPdf("Proforma", viewModels);
+            return report;
         }
         [HttpGet]
         public ActionResult DeleteOrder(int id)

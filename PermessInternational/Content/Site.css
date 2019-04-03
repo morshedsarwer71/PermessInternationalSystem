@@ -17,3 +17,9 @@ ul.nav.nav-tabs li:not(.active) a {
 ul.nav.nav-tabs li.active a {
     border-top: 3px solid #16a765;
 }
+.bgimg {
+    background-image: url('~/Areas/Permess/Image/Pad.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+}

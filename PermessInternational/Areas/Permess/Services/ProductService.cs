@@ -279,7 +279,27 @@ namespace PermessInternational.Areas.Permess.Services
                 {
                     Id=4,
                     Name="TT Payment"
-                }
+                },
+                new PaymentMethod()
+                {
+                    Id=5,
+                    Name="LC 90 Days"
+                },
+                new PaymentMethod()
+                {
+                    Id=6,
+                    Name="LC AT SIGHT"
+                },
+                new PaymentMethod()
+                {
+                    Id=7,
+                    Name="Open Credit of 60 Days from B/L Date"
+                },
+                new PaymentMethod()
+                {
+                    Id=8,
+                    Name="Open Credit of 90 Days from B/L Date"
+                },
             };
             return yesNoModels;
         }
@@ -296,7 +316,7 @@ namespace PermessInternational.Areas.Permess.Services
                 new Bank()
                 {
                     Id=2,
-                    Name="UCBL"
+                    Name="UCBL Principal Branch Motijheel"
                 }
             };
             return yesNoModels;

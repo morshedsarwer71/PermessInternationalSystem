@@ -341,6 +341,52 @@ namespace PermessInternational.Areas.Permess.Services
             }
                 return responses;
         }
+        public IEnumerable<ResponseOrders> ResponseOrdersByCode(string code)
+        {
+            List<ResponseOrders> responses = new List<ResponseOrders>();
+            using (var command = _context.Database.Connection.CreateCommand())
+            {
+                command.CommandText = "Permes_Orders_Print @Code";
+                command.Parameters.Add(new SqlParameter("@Code", code));
+                _context.Database.Connection.Open();
+                using (var result = command.ExecuteReader())
+                {
+                    if (result.HasRows)
+                    {
+                        while (result.Read())
+                        {
+                            responses.Add(new ResponseOrders()
+                            {
+                                SICode = Convert.ToString(result[0]),
+                                IssueDate = Convert.ToDateTime(result[1]),
+                                Companyname = Convert.ToString(result[2]),
+                                OrderQuantity = Convert.ToDecimal(result[3]),
+                                NetPrice = Convert.ToDecimal(result[4]),
+                                OverInvoice = Convert.ToDecimal(result[5]),
+                                BuyerRef = Convert.ToString(result[6]),
+                                LC = Convert.ToString(result[7]),
+                                Delivery = Convert.ToString(result[8]),
+                                PaymentMethod = Convert.ToString(result[9]),
+                                SIDocumentCode = Convert.ToString(result[10]),
+                                SIProductCode = Convert.ToString(result[11]),
+                                Quantity = Convert.ToDecimal(result[12]),
+                                CompanyAddress = Convert.ToString(result[13]),
+                                DeliveryAddress = Convert.ToString(result[14]),
+                                ContactPerson = Convert.ToString(result[15]),
+                                IssuedBy = Convert.ToString(result[16]),
+                                PoNumber = Convert.ToString(result[17]),
+                                Buyer = Convert.ToString(result[18]),
+                                GoodsReqDate = Convert.ToDateTime(result[19]),
+                                HSCode = Convert.ToString(result[20])
+
+                            });
+                        }
+                    }
+                }
+                _context.Database.Connection.Close();
+            }
+            return responses;
+        }
 
         public IEnumerable<ResponseStocks> ResponseStocks()
         {

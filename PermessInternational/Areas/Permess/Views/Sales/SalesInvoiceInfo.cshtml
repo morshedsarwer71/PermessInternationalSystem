@@ -144,6 +144,10 @@
                             <input type="text" id="deliveryDate" class="form-control" />
                         </div>
                         <div class="form-group">
+                            <label class="col-form-label">Approx Goods Req Date</label>
+                            <input type="text" id="goodsReqDate" class="form-control" />
+                        </div>
+                        <div class="form-group">
                             <label class="col-form-label">Company</label>
                             <select class="form-control" id="companyId">
                                 @foreach (var item in Model.Companies)
@@ -472,6 +476,10 @@
                     format: "yyyy-mm-dd",
                     //DateCount();
                 });
+                $("#goodsReqDate").datepicker({
+                    format: "yyyy-mm-dd",
+                    //DateCount();
+                });
             });
             $("#btnPreview").click(function () {
                 $("#sIDocument").show("slow");
@@ -521,6 +529,7 @@
                         $("#cadd").val(data.CompanyAddress);
                         $("#deliveryAddress").val(data.CompanyAddress);
                         $("#contactPerson").val(data.ContactPerson);
+                        $("#buyer").val(data.Buyer);
                         $('#dvLoader').hide();
 
                     }
@@ -536,6 +545,7 @@
                 var style = $("#style").val();
                 var deliveryStatus = $("#deliveryStatus").val();
                 var deliveryDate = $("#deliveryDate").val();
+                var goodsReqDate = $("#goodsReqDate").val();
                 var itemNo = $("#itemNo").val();
                 var deliveryType = $("#deliveryType").val();
                 var buyer = $("#buyer").val();
@@ -568,6 +578,7 @@
                         "Style": style,
                         "DeliveryStatus": deliveryStatus,
                         "DeliveryDate": deliveryDate,
+                        "GoodsReqDate": goodsReqDate,
                         "ItemNo": itemNo,
                         "DeliveryType": deliveryType,
                         "Buyer": buyer,

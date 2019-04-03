@@ -1,0 +1,229 @@
+﻿@model PermessInternational.Areas.Permess.ViewModels.OrdersViewModels
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Invoice</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="~/Content/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/Content/bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="../../bower_components/Ionicons/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Content/dist/css/AdminLTE.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="~/Content/dist/css/blue.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+
+<body>
+    <style type="text/css">
+        .bgimg {
+            background-image: url("~/Areas/Permess/Image/Pad.jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+            position: relative;
+        }
+    </style>
+    @{
+        var widhth = "";
+        var code = "";
+        var article = "";
+        var construction = "";
+        var softness = "";
+        var source = "";
+        var product = "";
+        var color = "";
+        decimal OrderQuantity = 0;
+        decimal UnitPrice = 0;
+        decimal TotalPrice = 0;
+        var deliverAddres = "";
+        var poNumber = "";
+        var Date = "";
+        var IssuedBy = "";
+        var contactPrson = "";
+        var buyer = "";
+        var goodsReq = "";
+        var payment = "";
+        var companyName = "";
+        var companyAddress = "";
+    }
+    @foreach (var item in Model.Product)
+    {
+        product = item.Product;
+        article = item.Article;
+        construction = item.Construction;
+        softness = item.Softness;
+        source = item.Source;
+        widhth = item.Width;
+        code = item.Code;
+        OrderQuantity = item.OrderQuantity;
+        UnitPrice = item.UnitPrice;
+        TotalPrice = item.Amount;
+        color = item.Color;
+
+    }
+    @foreach (var item in Model.ResponseOrders)
+    {
+        deliverAddres = item.DeliveryAddress;
+        poNumber = item.PoNumber;
+        Date = item.IssueDate.ToShortDateString();
+        IssuedBy = item.IssuedBy;
+        IssuedBy = item.IssuedBy;
+        contactPrson = item.ContactPerson;
+        buyer = item.Buyer;
+        goodsReq = item.GoodsReqDate.ToShortDateString();
+        payment = item.PaymentMethod;
+        companyName = item.Companyname;
+        companyAddress = item.CompanyAddress;
+
+    }
+
+    <section class="content">
+        <div style="margin-top:-100px;">
+            <img src="~/Areas/Permess/Image/Pad.jpg" />
+            <div class="row" style="margin-top:-1300px;">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="col-sm-12">
+                            <h4 class="text-center"><u>PROFORMA INVOICE</u></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <table class="table">
+                        <tr>
+                            <td>
+                                <div class="col-sm-6">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-12">
+                                            <h3>Bill To:</h3>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <h2>@companyName</h2>
+                                            <p>@companyAddress </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-12">
+                                            <h3>Delivery To:</h3>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <p>@deliverAddres</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-right">
+                                <div class="col-sm-6">
+                                    <div class="col-md-12">
+                                        <h4><b>P/I # @code</b></h4>
+                                        <p>Date: @Date </p>
+                                        <p>By: @IssuedBy </p>
+                                        <p>Contact Person: @contactPrson </p>
+                                        <p>Buyer: @buyer</p>
+                                        <p>Approx Goods Req Date: @goodsReq</p>
+                                        <p>Payment - @payment</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>Order Number: @poNumber</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-bordered table-responsive">
+                            <thead>
+                                <tr>
+                                    <th>Description</th>
+                                    <th>Quantity In Yards</th>
+                                    <th>Unit Price</th>
+                                    <th>Total Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><b>@product</b>, <b>Width: @widhth</b>, <b>Construction: @construction</b>, <b>Article: @article</b>, <b>Color: @color</b> </td>
+                                    <td>@OrderQuantity</td>
+                                    <td>@UnitPrice</td>
+                                    <td>@TotalPrice</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>Amount In Words: @ViewBag.ValueInWords</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>* Delivery will be started after 20 days of receiving of the irrevocable of letter of credit.	</p>
+                        <p>* Letter of credit will be opened as per address: Permess South East Asia Ltd. Gorai Industrial Area, Mirzapur, Tangail.</p>
+                        <b>Advising Bank: United Commercial Bank Limited, Principal Branch, 58, Motijheel Commercial Area, Dhaka - 1000 </b></br>
+                        <b>A/C # 0011101000005220 </b>
+                        <h4><u>** UD should be provided before goods delivery.</u></h4>
+                        <p>a) Maturity date to be counted from the date of receipt of goods.	</p>
+                        <p>b) The invoice value must be paid at 90 Days sight in US$ by confirmed irrevocable letter of credit on UCBL</p>
+                        <p>Principal Branch Motijheel, Dhaka Through FDD drawn on Bangladesh Bank in favour of Permess South East Asia Ltd.</p>
+                        <p>c) Overdue interest to be paid for delayed period at 16% from the date of maturity till payment mode.</p>
+                        <p>L/C will not be Accepted without this Clause.</p>
+                        <p>d) Partial delivery/payment allowed.</p>
+                        <p>e) All charges out side of beneficiary's bank are on opener's account</p>
+                        <p>f) Please insert VAT Registration Certificate Number in the Letter of Credit.</p>
+                        <p>g) L/C Shipment date should be 15 days plus from the last delivery date.</p>
+                        <p> Swift # UCBLBDDHPRB H.S. # 5903.00.10 TIN # 850641487187 BIN # 000125482</p>
+
+                    </div>
+                </div>
+                <div class="row" style="margin-top:100px;">
+                    <div class="col-sm-12">
+                        <table class="table">
+                            <tr>
+                                <td>
+                                    <div><h5>For Permess South East Asia ltd</h5></div>
+                                </td>
+                                <td class="text-right">
+                                    <div><h5>Accepted by buyer</h5></div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:100px;">
+                    <div class="col-sm-12">
+                        <table class="table">
+                            <tr>
+                                <td>
+                                    <div><h5>Authorised Signature</h5></div>
+                                </td>
+                                <td class="text-right">
+                                    <div><h5>Authorised Signature</h5></div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="~/Content/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="~/Content/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>

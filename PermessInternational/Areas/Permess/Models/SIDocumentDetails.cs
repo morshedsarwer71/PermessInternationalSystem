@@ -34,6 +34,7 @@ namespace PermessInternational.Areas.Permess.Models
         public int LCStatus { get; set; }
         public string HSCode { get; set; }
         public string BuyerOrderRef { get; set; }
+        public DateTime GoodsReqDate { get; set; }
         public string OrderDetails { get; set; }
         public string Description { get; set; }
         public int ConcernId { get; set; }

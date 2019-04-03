@@ -103,7 +103,42 @@ namespace PermessInternational.Areas.Permess.Services
             }
 
         }
+        public IEnumerable<ResponseProductionOrder> PrintProduct(string code)
+        {
+            List<ResponseProductionOrder> orders = new List<ResponseProductionOrder>();
+            using (var command = _context.Database.Connection.CreateCommand())
+            {
+                command.CommandText = "Permess_Report_Prnt_Product @Code";
+                command.Parameters.Add(new SqlParameter("@Code", code));
+                _context.Database.Connection.Open();
+                using (var result = command.ExecuteReader())
+                {
+                    if (result.HasRows)
+                    {
+                        while (result.Read())
+                        {
+                            orders.Add(new ResponseProductionOrder()
+                            {
+                                Code= Convert.ToString(result[0]),
+                                Article = Convert.ToString(result[1]),
+                                Construction = Convert.ToString(result[2]),
+                                Softness = Convert.ToString(result[3]),
+                                Source = Convert.ToString(result[4]),
+                                Width = Convert.ToString(result[5]),
+                                Product = Convert.ToString(result[6]),
+                                OrderQuantity = Convert.ToDecimal(result[7]),
+                                UnitPrice = Convert.ToDecimal(result[8]),
+                                Amount = Convert.ToDecimal(result[9]),
+                                Color = Convert.ToString(result[10])
 
+                            });
+                        }
+                    }
+                }
+                _context.Database.Connection.Close();
+            }
+            return orders;
+        }
         public void AddSIDocumentDetails(SIDocumentDetails sIDocument, int userId, int concernId)
         {
             using (DbContextTransaction transaction = _context.Database.BeginTransaction())
@@ -462,6 +497,7 @@ namespace PermessInternational.Areas.Permess.Services
             doc.SICode = sIDocument.SICode;
             doc.SIName = sIDocument.SIName;
             doc.Style = sIDocument.Style;
+            doc.GoodsReqDate = sIDocument.GoodsReqDate;
             _context.SaveChanges();
         }
 

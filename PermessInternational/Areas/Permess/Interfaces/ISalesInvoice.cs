@@ -29,5 +29,6 @@ namespace PermessInternational.Areas.Permess.Interfaces
         IEnumerable<SalesReturn> SalesReturns(int concernId);
         void UpdateDeliveryQuantity(DeliveryQuantity deliveryQuantity,int userId,int concernId,int id);
         void DeleteInvoice(int id);
+        IEnumerable<ResponseProductionOrder> PrintProduct(string code);        
     }
 }

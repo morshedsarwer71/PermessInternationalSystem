@@ -1,0 +1,216 @@
+﻿@model PermessInternational.Areas.Permess.ViewModels.OrdersViewModels
+@{
+
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Invoice</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="~/Content/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/Content/bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="../../bower_components/Ionicons/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Content/dist/css/AdminLTE.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="~/Content/dist/css/blue.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <link href="~/Content/Site.css" rel="stylesheet" />
+</head>
+<body>
+    
+    @{
+        var widhth = "";
+        var code = "";
+        var article = "";
+        var construction = "";
+        var softness = "";
+        var source = "";
+        var product = "";
+        var color = "";
+        decimal OrderQuantity = 0;
+        decimal UnitPrice = 0;
+        decimal TotalPrice = 0;
+        var deliverAddres = "";
+        var poNumber = "";
+        var Date = "";
+        var IssuedBy = "";
+        var contactPrson = "";
+        var buyer = "";
+        var goodsReq = "";
+        var payment = "";
+        var companyName = "";
+        var companyAddress = "";
+        var hsCode = "";
+    }
+    @foreach (var item in Model.Product)
+    {
+        product = item.Product;
+        article = item.Article;
+        construction = item.Construction;
+        softness = item.Softness;
+        source = item.Source;
+        widhth = item.Width;
+        code = item.Code;
+        OrderQuantity = item.OrderQuantity;
+        UnitPrice = item.UnitPrice;
+        TotalPrice = item.Amount;
+        color = item.Color;
+
+    }
+    @foreach (var item in Model.ResponseOrders)
+    {
+        deliverAddres = item.DeliveryAddress;
+        poNumber = item.PoNumber;
+        Date = item.IssueDate.ToShortDateString();
+        IssuedBy = item.IssuedBy;
+        IssuedBy = item.IssuedBy;
+        contactPrson = item.ContactPerson;
+        buyer = item.Buyer;
+        goodsReq = item.GoodsReqDate.ToShortDateString();
+        payment = item.PaymentMethod;
+        companyName = item.Companyname;
+        companyAddress = item.CompanyAddress;
+        hsCode = item.HSCode;
+
+    }
+    <section class="content">
+        <div style="margin-top:-100px;">
+            <img src="~/Areas/Permess/Image/Pad.jpg" />
+            <div class="row" style="margin-top:-1300px;">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="col-sm-12">
+                            <h4 class="text-center"><u>PROFORMA INVOICE</u></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <table class="table">
+                        <tr>
+                            <td>
+                                <div class="col-sm-6">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-12">
+                                            <h3>Bill To:</h3>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <h2>@companyName</h2>
+                                            <p>@companyAddress </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-12">
+                                            <h3>Delivery To:</h3>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <p>@deliverAddres</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-right">
+                                <div class="col-sm-6">
+                                    <div class="col-md-12">
+                                        <h4><b>P/I # @code</b></h4>
+                                        <p>Date: @Date </p>
+                                        <p>By: @IssuedBy </p>
+                                        <p>Contact Person: @contactPrson </p>
+                                        <p>Buyer: @buyer</p>
+                                        <p>Approx Goods Req Date: @goodsReq</p>
+                                        <p>Payment - @payment</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>Order Number: @poNumber</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-bordered table-responsive">
+                            <thead>
+                                <tr>
+                                    <th>Description</th>
+                                    <th>Quantity In Yards</th>
+                                    <th>Unit Price</th>
+                                    <th>Total Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><b> @product</b>, <b>Width: @widhth</b>, <b>Construction: @construction</b>, <b>Article: @article</b>, <b>Color: @color</b> </td>
+                                    <td>@OrderQuantity</td>
+                                    <td>@UnitPrice</td>
+                                    <td>@TotalPrice</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>Amount In Words: @ViewBag.ValueInWords</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>Terms & Conditions </h4>
+                        <p>H.S.Code No: @hsCode </p>
+                        <p>TIN NO: 150-200-5025/Circle-50. Dhaka. </p>
+                        <p>Advising Bank: UCBL Principal Branch Motijheel </p>
+                        <p>(Foreign) A/C # 0011185000000057</p>
+                        <p>Swift # UCBLBDDHPRB</p>
+                        <p>BIN # 000125482	</p>
+
+                    </div>
+                </div>
+                <div class="row" style="margin-top:100px;">
+                    <div class="col-sm-12">
+                        <table class="table">
+                            <tr>
+                                <td>
+                                    <div><h5>For Permess South East Asia ltd</h5></div>
+                                </td>
+                                <td class="text-right">
+                                    <div><h5>Accepted by buyer</h5></div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:100px;">
+                    <div class="col-sm-12">
+                        <table class="table">
+                            <tr>
+                                <td>
+                                    <div><h5>Authorised Signature</h5></div>
+                                </td>
+                                <td class="text-right">
+                                    <div><h5>Authorised Signature</h5></div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="~/Content/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="~/Content/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -10,6 +10,8 @@ namespace PermessInternational.Areas.Permess.PlainModels
         public int Serial { get; set; }
         public int OrderId { get; set; }
         public decimal Amount { get; set; }
+        public decimal OrderQuantity { get; set; }
+        public decimal UnitPrice { get; set; }
         public string Time { get; set; }
         public string Article { get; set; }
         public string Construction { get; set; }
@@ -17,8 +19,11 @@ namespace PermessInternational.Areas.Permess.PlainModels
         public string Softness { get; set; }
         public string Source { get; set; }
         public string Width { get; set; }
+        public string Color { get; set; }
         public string Assigned { get; set; }
         public string ProcessType { get; set; }
         public string Status { get; set; }
+        public string Code { get; set; }
+        public string ThirdPartyStatus { get; set; }
     }
 }

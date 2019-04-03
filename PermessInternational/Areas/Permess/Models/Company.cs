@@ -12,6 +12,7 @@ namespace PermessInternational.Areas.Permess.Models
         public string CompanyAddress { get; set; }
         public string ContactPerson { get; set; }
         public string MobileNo { get; set; }
+        public string Buyer { get; set; }
         public int ConcerinId { get; set; }
         public int Creator { get; set; }
         public DateTime CreationDate { get; set; }

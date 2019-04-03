@@ -187,6 +187,7 @@ namespace PermessInternational.Areas.Permess.Services
                                 Assigned = Convert.ToString(result[10]),
                                 ProcessType = Convert.ToString(result[11]),
                                 Status = Convert.ToString(result[12]),
+                                ThirdPartyStatus = Convert.ToString(result[13]),
 
                             });
                         }
