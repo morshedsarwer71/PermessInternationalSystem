@@ -10,5 +10,6 @@ namespace PermessInternational.Areas.Permess.ViewModels
     {
         public IEnumerable<ResponseOrders> ResponseOrders { get; set; }
         public IEnumerable<ResponseProductionOrder> Product { get; set; }
+        public IEnumerable<PIReviseds> PIReviseds { get; set; }
     }
 }

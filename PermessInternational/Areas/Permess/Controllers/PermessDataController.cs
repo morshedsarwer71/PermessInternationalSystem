@@ -1,4 +1,5 @@
-﻿using PermessInternational.Areas.Permess.Interfaces;
+﻿using PermessInternational.Areas.Global.Interface;
+using PermessInternational.Areas.Permess.Interfaces;
 using PermessInternational.Areas.Permess.Models;
 using PermessInternational.Areas.Permess.ValueInWords;
 using PermessInternational.Areas.Permess.ViewModels;
@@ -20,8 +21,9 @@ namespace PermessInternational.Areas.Permess.Controllers
         public IStock _stock;
         public IPermess _permess;
         private readonly ISalesInvoice _sales;
+        private readonly ISystemUser _user;
         private PermessDbContext _context;
-        public PermessDataController(IBuyer buyer, IProduct product, IStock stock, IPermess permess, ISalesInvoice sales, PermessDbContext context)
+        public PermessDataController(IBuyer buyer, IProduct product, IStock stock, IPermess permess, ISalesInvoice sales, PermessDbContext context, ISystemUser user)
         {
             _buyer = buyer;
             _product = product;
@@ -29,6 +31,7 @@ namespace PermessInternational.Areas.Permess.Controllers
             _permess = permess;
             _sales = sales;
             _context = context;
+            _user = user;
         }
         // GET: Permess/PermessData
         public ActionResult Index()
@@ -698,7 +701,7 @@ namespace PermessInternational.Areas.Permess.Controllers
             var product = _sales.PrintProduct(id.ToString());
             foreach (var item in product)
             {
-                total_price = item.Amount;
+                total_price += item.Amount;
 
             }
             WordValues wordValues = new WordValues();
@@ -721,7 +724,7 @@ namespace PermessInternational.Areas.Permess.Controllers
             WordValues wordValues = new WordValues();
             foreach (var item in product)
             {
-                total_price = item.Amount;
+                total_price += item.Amount;
 
             }
             int val = Convert.ToInt32(total_price);
@@ -759,7 +762,7 @@ namespace PermessInternational.Areas.Permess.Controllers
                 ViewBag.Company = _context.Companies.ToList();
                 SIDocumentDetails documentDetails = new SIDocumentDetails();
                 documentDetails = document;
-                return View(documentDetails);
+                return View();
             }
             return RedirectToAction("LogIn", "GlobalData", new { Area = "Global" });
 
@@ -772,10 +775,12 @@ namespace PermessInternational.Areas.Permess.Controllers
             if (concernId > 0 && userId > 0)
             {
                 //DeliveryQuantity deliveryQuantity = new DeliveryQuantity();
+                var del = _context.DeliveryQuantities.FirstOrDefault(x=>x.SIProductDetailsCode== id.ToString());
                 delivery.CreationDate = DateTime.Now;
-                delivery.ProductCode = id.ToString();
+                delivery.SIProductDetailsCode = id.ToString();
                 delivery.Creator = userId;
                 delivery.ConcernId = concernId;
+                delivery.SIProductDetailsCode = del.SIProductDetailsCode;
                 _context.DeliveryQuantities.Add(delivery);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Orders));
@@ -816,6 +821,115 @@ namespace PermessInternational.Areas.Permess.Controllers
             }
             return RedirectToAction("LogIn", "GlobalData", new { Area = "Global" });
 
+        }
+
+        [HttpGet]
+        public ActionResult RevisedData()
+        {
+            var concernId = Convert.ToInt32(Session["ConcernId"]);
+            var userId = Convert.ToInt32(Session["UserId"]);
+            if (concernId > 0 && userId > 0)
+            {
+                var order = _stock.ResponseOrders();
+                OrdersViewModels viewModels = new OrdersViewModels()
+                {
+                    ResponseOrders = order
+                };
+                return View(viewModels);
+            }
+            return RedirectToAction("LogIn", "GlobalData", new { Area = "Global" });
+
+        }
+        [HttpGet]
+        public ActionResult RevisedReport(int id)
+        {
+            var concernId = Convert.ToInt32(Session["ConcernId"]);
+            var userId = Convert.ToInt32(Session["UserId"]);
+            if (concernId > 0 && userId > 0)
+            {
+                var order = _permess.PIReviseds(id.ToString());
+                OrdersViewModels viewModels = new OrdersViewModels()
+                {
+                    PIReviseds = order
+                };
+                return View(viewModels);
+            }
+            return RedirectToAction("LogIn", "GlobalData", new { Area = "Global" });
+
+        }
+        [HttpGet]
+        public ActionResult SalesReport()
+        {
+            var concernId = Convert.ToInt32(Session["ConcernId"]);
+            var userId = Convert.ToInt32(Session["UserId"]);
+            if (concernId > 0 && userId > 0)
+            {
+
+                var product = _product.ArticleProductSettings(concernId);
+                var products = _product.Products(concernId);
+                var company = _buyer.Companies(concernId);
+                var article = _product.ArticleProductSettings(concernId);
+                var user = _user.Users(concernId);
+                //ViewBag.value = value;
+                ProductSettingViewModels viewModels = new ProductSettingViewModels()
+                {
+                    ProductSettings = product,
+                    Products = products,
+                    Companies = company,
+                    ArticleProductSettings = article,
+                    SystemUser = user
+                };
+                return View(viewModels);
+
+            }
+            return RedirectToAction("LogIn", "GlobalData", new { Area = "Global" });
+        }
+        [HttpPost]
+        public JsonResult SalesReport(int productId=0, int userId=0, int customerId=0)
+        {
+            var result = _stock.ProductReport(productId, userId, customerId);
+            OrdersViewModels viewModels = new OrdersViewModels()
+            {
+                ResponseOrders = result
+            };
+            return Json(viewModels, JsonRequestBehavior.AllowGet);
+        }
+        [HttpGet]
+        public ActionResult ProductReport()
+        {
+            var concernId = Convert.ToInt32(Session["ConcernId"]);
+            var userId = Convert.ToInt32(Session["UserId"]);
+            if (concernId > 0 && userId > 0)
+            {
+
+                var product = _product.ArticleProductSettings(concernId);
+                var products = _product.Products(concernId);
+                var company = _buyer.Companies(concernId);
+                var article = _product.ArticleProductSettings(concernId);
+                var user = _user.Users(concernId);
+                //ViewBag.value = value;
+                ProductSettingViewModels viewModels = new ProductSettingViewModels()
+                {
+                    ProductSettings = product,
+                    Products = products,
+                    Companies = company,
+                    ArticleProductSettings = article,
+                    SystemUser = user
+                };
+                return View(viewModels);
+
+            }
+            return RedirectToAction("LogIn", "GlobalData", new { Area = "Global" });
+        }
+        [HttpPost]
+        public JsonResult ProductReport(int productId = 0, int userId = 0, int customerId = 0)
+        {
+            var result = _stock.ProductReport(productId, userId, customerId);
+            OrdersViewModels viewModels = new OrdersViewModels()
+            {
+                ResponseOrders = result
+            };
+            return Json(viewModels, JsonRequestBehavior.AllowGet);
         }
 
     }

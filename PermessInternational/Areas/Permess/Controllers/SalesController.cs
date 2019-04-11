@@ -16,10 +16,11 @@ namespace PermessInternational.Areas.Permess.Controllers
         private readonly ISalesInvoice _sales;
         public IProduct _product;
         private readonly IPurchase _purchase;
+        private readonly IPermess _permess;
         private readonly IStock _stock;
         private PermessDbContext _context;
         //string code = "";
-        public SalesController(IBuyer buyer, ISalesInvoice sales, IProduct product, IPurchase purchase, PermessDbContext context, IStock stock)
+        public SalesController(IBuyer buyer, ISalesInvoice sales, IProduct product, IPurchase purchase, PermessDbContext context, IStock stock, IPermess permess)
         {
             _buyer = buyer;
             _sales = sales;
@@ -27,6 +28,7 @@ namespace PermessInternational.Areas.Permess.Controllers
             _purchase = purchase;
             _context = context;
             _stock = stock;
+            _permess = permess;
         }
         // GET: Permess/Sales
         public ActionResult Index()
@@ -160,6 +162,14 @@ namespace PermessInternational.Areas.Permess.Controllers
             var userId = Convert.ToInt32(Session["UserId"]);
             if (concernId > 0 && userId > 0)
             {
+                PIRevised pIRevised = new PIRevised();
+                pIRevised.PICode = id.ToString();
+                pIRevised.UserId = userId;
+                pIRevised.ConcernId = concernId;
+                pIRevised.RevisedDate = DateTime.Now;
+                pIRevised.RevisedDocs = "Document";
+                _permess.AddRevisedData(pIRevised);
+
                 _sales.UpdateSIDocumentDetails(sIDocument, userId, concernId, id.ToString());
                 return RedirectToAction("EditOrders","PermessData",new { Areas="Permess"});
             }
@@ -170,7 +180,7 @@ namespace PermessInternational.Areas.Permess.Controllers
         {
             var concernId = Convert.ToInt32(Session["ConcernId"]);
             var userId = Convert.ToInt32(Session["UserId"]);
-            var SIProduct = _context.SIProductDetails.FirstOrDefault(m => m.SICode == id.ToString());
+            var SIProduct = _context.SIProductDetails.FirstOrDefault(m => m.SIProductDetId == id);
             if (concernId > 0 && userId > 0)
             {
                 if (SIProduct != null)
@@ -229,7 +239,14 @@ namespace PermessInternational.Areas.Permess.Controllers
             var userId = Convert.ToInt32(Session["UserId"]);
             if (concernId > 0 && userId > 0)
             {
-                _sales.UpdateSIProductDetails(sIProductDetails, userId, concernId, id.ToString());
+                PIRevised pIRevised = new PIRevised();
+                pIRevised.PICode = id.ToString();
+                pIRevised.UserId = userId;
+                pIRevised.ConcernId = concernId;
+                pIRevised.RevisedDate = DateTime.Now;
+                pIRevised.RevisedDocs = "Product";
+                _permess.AddRevisedData(pIRevised);
+                _sales.UpdateSIProductDetails(sIProductDetails, userId, concernId, id);
                 return RedirectToAction("EditOrders", "PermessData", new { Areas = "Permess" });
             }
             return RedirectToAction("LogIn", "GlobalData", new { Area = "Global" });
@@ -238,7 +255,7 @@ namespace PermessInternational.Areas.Permess.Controllers
         [HttpGet]
         public ActionResult DeliveryQuantities(int id)
         {
-            var quantity = _context.DeliveryQuantities.Where(x => x.ProductCode == id.ToString()).ToList();
+            var quantity = _context.DeliveryQuantities.Where(x => x.SIProductDetailsCode == id.ToString()).ToList();
             return View(quantity);
         }
         [HttpGet]
@@ -260,8 +277,8 @@ namespace PermessInternational.Areas.Permess.Controllers
             var userId = Convert.ToInt32(Session["UserId"]);
             if (concernId > 0 && userId > 0)
             {
-                _sales.UpdateDeliveryQuantity(deliveryQuantity, userId, concernId,id);
-                return RedirectToAction("DeliveryQuantities", "PermessData", new { id = id });
+                _sales.UpdateDeliveryQuantity(deliveryQuantity, userId, concernId, id);
+                return RedirectToAction("Orders", "PermessData", new { Area = "Permess" });
             }            
             return RedirectToAction("LogIn", "GlobalData", new { Area = "Global" });
         }

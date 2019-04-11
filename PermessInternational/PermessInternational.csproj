@@ -202,6 +202,7 @@
     <Compile Include="Areas\Permess\Models\MachinePurchase.cs" />
     <Compile Include="Areas\Permess\Models\OrderDetails.cs" />
     <Compile Include="Areas\Permess\Models\OrderRawMaterial.cs" />
+    <Compile Include="Areas\Permess\Models\PIRevised.cs" />
     <Compile Include="Areas\Permess\Models\Product.cs" />
     <Compile Include="Areas\Permess\Models\ProductionOrder.cs" />
     <Compile Include="Areas\Permess\Models\ProductionProcess.cs" />
@@ -215,6 +216,7 @@
     <Compile Include="Areas\Permess\Models\SIProductDetails.cs" />
     <Compile Include="Areas\Permess\Models\SRIProductDetails.cs" />
     <Compile Include="Areas\Permess\PermessAreaRegistration.cs" />
+    <Compile Include="Areas\Permess\PlainModels\PIReviseds.cs" />
     <Compile Include="Areas\Permess\PlainModels\ResponseCashDetails.cs" />
     <Compile Include="Areas\Permess\PlainModels\ResponseGoodsReport.cs" />
     <Compile Include="Areas\Permess\PlainModels\ResponseLCStatements.cs" />
@@ -235,6 +237,7 @@
     <Compile Include="Areas\Permess\StaticModels\Length.cs" />
     <Compile Include="Areas\Permess\StaticModels\PaymentClause.cs" />
     <Compile Include="Areas\Permess\StaticModels\PaymentMethod.cs" />
+    <Compile Include="Areas\Permess\StaticModels\ReportModels.cs" />
     <Compile Include="Areas\Permess\StaticModels\Status.cs" />
     <Compile Include="Areas\Permess\StaticModels\Tenor.cs" />
     <Compile Include="Areas\Permess\StaticModels\YesNoModel.cs" />
@@ -427,6 +430,34 @@
     <Compile Include="Migrations\201904021921478_newUpdateforProforma.cs" />
     <Compile Include="Migrations\201904021921478_newUpdateforProforma.Designer.cs">
       <DependentUpon>201904021921478_newUpdateforProforma.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904041103285_DocsSubmitDate.cs" />
+    <Compile Include="Migrations\201904041103285_DocsSubmitDate.Designer.cs">
+      <DependentUpon>201904041103285_DocsSubmitDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904041109233_DocsSubmitDate2.cs" />
+    <Compile Include="Migrations\201904041109233_DocsSubmitDate2.Designer.cs">
+      <DependentUpon>201904041109233_DocsSubmitDate2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904090627287_expectedPaymentDate.cs" />
+    <Compile Include="Migrations\201904090627287_expectedPaymentDate.Designer.cs">
+      <DependentUpon>201904090627287_expectedPaymentDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904100704335_SIProductDetailsId.cs" />
+    <Compile Include="Migrations\201904100704335_SIProductDetailsId.Designer.cs">
+      <DependentUpon>201904100704335_SIProductDetailsId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904100716393_SIProductDetailsIdh.cs" />
+    <Compile Include="Migrations\201904100716393_SIProductDetailsIdh.Designer.cs">
+      <DependentUpon>201904100716393_SIProductDetailsIdh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904100752454_SIProductDetailsIdhJ.cs" />
+    <Compile Include="Migrations\201904100752454_SIProductDetailsIdhJ.Designer.cs">
+      <DependentUpon>201904100752454_SIProductDetailsIdhJ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904102032282_deliveryDate.cs" />
+    <Compile Include="Migrations\201904102032282_deliveryDate.Designer.cs">
+      <DependentUpon>201904102032282_deliveryDate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PermessContext\PermessDbContext.cs" />
@@ -7309,6 +7340,10 @@
     <Content Include="Areas\Permess\Image\Pad.pdf" />
     <Content Include="Areas\Permess\Views\PermessData\Print.cshtml" />
     <Content Include="Areas\Permess\Views\PermessData\Test.cshtml" />
+    <Content Include="Areas\Permess\Views\PermessData\RevisedData.cshtml" />
+    <Content Include="Areas\Permess\Views\PermessData\RevisedReport.cshtml" />
+    <Content Include="Areas\Permess\Views\PermessData\SalesReport.cshtml" />
+    <Content Include="Areas\Permess\Views\PermessData\ProductReport.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -7499,6 +7534,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904021921478_newUpdateforProforma.resx">
       <DependentUpon>201904021921478_newUpdateforProforma.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904041103285_DocsSubmitDate.resx">
+      <DependentUpon>201904041103285_DocsSubmitDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904041109233_DocsSubmitDate2.resx">
+      <DependentUpon>201904041109233_DocsSubmitDate2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904090627287_expectedPaymentDate.resx">
+      <DependentUpon>201904090627287_expectedPaymentDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904100704335_SIProductDetailsId.resx">
+      <DependentUpon>201904100704335_SIProductDetailsId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904100716393_SIProductDetailsIdh.resx">
+      <DependentUpon>201904100716393_SIProductDetailsIdh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904100752454_SIProductDetailsIdhJ.resx">
+      <DependentUpon>201904100752454_SIProductDetailsIdhJ.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904102032282_deliveryDate.resx">
+      <DependentUpon>201904102032282_deliveryDate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

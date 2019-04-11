@@ -52,11 +52,11 @@
                     </div>
                     <div class="form-group">
                         <label class="col-form-label">HS Code</label>
-                        <input class="form-control" name="HSCode" value="@Model.LCStatements.HSCode"/>
+                        <input class="form-control" name="HSCode" value="@Model.LCStatements.HSCode" />
                     </div>
                     <div class="form-group">
                         <label class="col-form-label">File Number</label>
-                        <input class="form-control" name="FileNo" value="@Model.LCStatements.FileNo"/>
+                        <input class="form-control" name="FileNo" value="@Model.LCStatements.FileNo" />
                     </div>
                     <div class="form-group">
                         <label class="col-form-label">Shipment Date</label>
@@ -80,24 +80,24 @@
                     </div>
                     <div class="form-group">
                         <label class="col-form-label">Value</label>
-                        <input class="form-control" name="Value" value="@Model.LCStatements.Value"/>
+                        <input class="form-control" name="Value" value="@Model.LCStatements.Value" />
 
                     </div>
                     <div class="form-group">
                         <label class="col-form-label">Comission</label>
-                        <input class="form-control" name="Comission" value="@Model.LCStatements.Comission"/>
+                        <input class="form-control" name="Comission" value="@Model.LCStatements.Comission" />
                     </div>
                     <div class="form-group">
                         <label class="col-form-label">Bank Name</label>
-                        <input class="form-control" name="BankName" value="@Model.LCStatements.BankName"/>
+                        <input class="form-control" name="BankName" value="@Model.LCStatements.BankName" />
                     </div>
                     <div class="form-group">
                         <label class="col-form-label">Bank Submission Date</label>
-                        <input class="form-control" id="bankSubDate" name="BankSubDate" value="@Model.LCStatements.BankSubDate.ToShortDateString()"/>
+                        <input class="form-control" id="bankSubDate" name="BankSubDate" value="@Model.LCStatements.BankSubDate.ToShortDateString()" />
                     </div>
                     <div class="form-group">
                         <label class="col-form-label">Party Name</label>
-                        <input class="form-control" name="PartyName" value="@Model.LCStatements.PartyName"/>
+                        <input class="form-control" name="PartyName" value="@Model.LCStatements.PartyName" />
                     </div>
                     <div class="form-group">
                         <label class="col-form-label">Payment Clause</label>
@@ -114,6 +114,14 @@
                                 }
                             }
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Document Submission Date</label>
+                        <input class="form-control" id="expiraionDate2" name="DocumentSubDate" value="@Model.LCStatements.DocumentSubDate.ToShortDateString()"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Document Exp Date</label>
+                        <input class="form-control" id="expiraionDate3" name="DocumentExpDate" value="@Model.LCStatements.DocumentExpDate.ToShortDateString()"/>
                     </div>
                     <div class="form-group">
                         <label class="col-form-label">Description</label>

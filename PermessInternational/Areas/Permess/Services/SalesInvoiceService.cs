@@ -158,6 +158,8 @@ namespace PermessInternational.Areas.Permess.Services
         {
             var code = sIProductDetails.ProductId + "" + sIProductDetails.ArticleId + "" + sIProductDetails.WidthId + "" + sIProductDetails.ConstructionId + "" + sIProductDetails.SoftnessId + "" + sIProductDetails.SourceId + "" + sIProductDetails.ColorId;
             var productCode = _context.ProductNames.FirstOrDefault(m => m.ProductCode == code);
+            var quantityCode = DateTime.Now.ToString("mmddfff");
+            var quantityCod = "5"+""+quantityCode;
             using (DbContextTransaction transaction = _context.Database.BeginTransaction())
             {
                 if (productCode == null)
@@ -175,6 +177,7 @@ namespace PermessInternational.Areas.Permess.Services
                     _context.SaveChanges();
 
                     sIProductDetails.ConcernId = concernId;
+                    sIProductDetails.SIProductDetailsCode = quantityCod;
                     sIProductDetails.ProductCode = code;
                     sIProductDetails.CreationDate = DateTime.Now;
                     sIProductDetails.Creator = userId;
@@ -185,6 +188,8 @@ namespace PermessInternational.Areas.Permess.Services
                     DeliveryQuantity delivery = new DeliveryQuantity();
 
                     delivery.ConcernId = concernId;
+                    delivery.SIProductDetailsCode = quantityCod;
+                    delivery.DeliveryDate = DateTime.Now;
                     delivery.ProductCode = sIProductDetails.SICode;
                     delivery.CreationDate = DateTime.Now;
                     delivery.Creator = userId;
@@ -198,6 +203,7 @@ namespace PermessInternational.Areas.Permess.Services
                 else
                 {
                     sIProductDetails.ConcernId = concernId;
+                    sIProductDetails.SIProductDetailsCode = quantityCod;
                     sIProductDetails.ProductCode = code;
                     sIProductDetails.CreationDate = DateTime.Now;
                     sIProductDetails.Creator = userId;
@@ -206,6 +212,8 @@ namespace PermessInternational.Areas.Permess.Services
 
                     DeliveryQuantity delivery = new DeliveryQuantity();
                     delivery.ConcernId = concernId;
+                    delivery.SIProductDetailsCode = quantityCod;
+                    delivery.DeliveryDate = DateTime.Now;
                     delivery.ProductCode = sIProductDetails.SICode;
                     delivery.CreationDate = DateTime.Now;
                     delivery.Creator = userId;
@@ -423,7 +431,6 @@ namespace PermessInternational.Areas.Permess.Services
                 delivery.Quantity = deliveryQuantity.Quantity;
                 delivery.ConcernId = concernId;
                 delivery.Creator = userId;
-                delivery.ProductCode = deliveryQuantity.ProductCode;
                 _context.SaveChanges();
 
                 var product = _context.SRIProductDetails.FirstOrDefault(x => x.SICode == deliveryQuantity.ProductCode);
@@ -454,6 +461,9 @@ namespace PermessInternational.Areas.Permess.Services
             lc.ShipmentDate = lCStatement.ShipmentDate;
             lc.Tenor = lCStatement.Tenor;
             lc.Value = lCStatement.Value;
+            lc.DocumentSubDate = lCStatement.DocumentSubDate;
+            lc.DocumentExpDate = lCStatement.DocumentExpDate;
+
             _context.SaveChanges();
         }
 
@@ -501,7 +511,7 @@ namespace PermessInternational.Areas.Permess.Services
             _context.SaveChanges();
         }
 
-        public void UpdateSIProductDetails(SIProductDetails sIProductDetails, int userId, int concernId, string Code)
+        public void UpdateSIProductDetails(SIProductDetails sIProductDetails, int userId, int concernId, int Code)
         {
             var code = sIProductDetails.ProductId + "" + sIProductDetails.ArticleId + "" + sIProductDetails.WidthId + "" + sIProductDetails.ConstructionId + "" + sIProductDetails.SoftnessId + "" + sIProductDetails.SourceId + "" + sIProductDetails.ColorId;
             var productCode = _context.ProductNames.FirstOrDefault(m => m.ProductCode == code);
@@ -521,7 +531,7 @@ namespace PermessInternational.Areas.Permess.Services
                     _context.ProductNames.Add(product);
                     _context.SaveChanges();
 
-                    var prop = _context.SIProductDetails.FirstOrDefault(m => m.SICode == Code);
+                    var prop = _context.SIProductDetails.FirstOrDefault(m => m.SIProductDetId == Code);
                     prop.AltArticle = sIProductDetails.AltArticle;
                     prop.ArticleId = sIProductDetails.ArticleId;
                     prop.ColorId = sIProductDetails.ColorId;
@@ -539,7 +549,7 @@ namespace PermessInternational.Areas.Permess.Services
                     prop.WidthId = sIProductDetails.WidthId;
                     _context.SaveChanges();
 
-                    var quantity = _context.DeliveryQuantities.FirstOrDefault(x => x.ProductCode == Code);
+                    var quantity = _context.DeliveryQuantities.FirstOrDefault(x => x.SIProductDetailsCode == prop.SIProductDetailsCode);
                     quantity.Quantity = sIProductDetails.DeliveryQuantity;
                     _context.SaveChanges();
                     transaction.Commit();
@@ -547,7 +557,7 @@ namespace PermessInternational.Areas.Permess.Services
                 }
                 else
                 {
-                    var prop = _context.SIProductDetails.FirstOrDefault(m => m.SICode == sIProductDetails.SICode);
+                    var prop = _context.SIProductDetails.FirstOrDefault(m => m.SIProductDetId == Code);
                     prop.AltArticle = sIProductDetails.AltArticle;
                     prop.ArticleId = sIProductDetails.ArticleId;
                     prop.ColorId = sIProductDetails.ColorId;
@@ -566,7 +576,7 @@ namespace PermessInternational.Areas.Permess.Services
 
                     _context.SaveChanges();
 
-                    var quantity = _context.DeliveryQuantities.FirstOrDefault(x => x.ProductCode == Code);
+                    var quantity = _context.DeliveryQuantities.FirstOrDefault(x => x.SIProductDetailsCode == prop.SIProductDetailsCode);
                     quantity.Quantity = sIProductDetails.DeliveryQuantity;
                     _context.SaveChanges();
 

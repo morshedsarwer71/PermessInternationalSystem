@@ -39,6 +39,10 @@
                             <input type="text" id="dateRemaining" readonly="readonly" class="form-control" />
                         </div>
                         <div class="form-group">
+                            <label class="col-form-label">Expected Payment Date</label>
+                            <input type="text" id="expectedPaymentDate" class="form-control" />
+                        </div>
+                        <div class="form-group">
                             <label class="col-form-label">Payment Method</label>
                             <select class="form-control" id="paymentMethod">
                                 @foreach (var item in Model.PaymentMethods)
@@ -95,6 +99,10 @@
                                     <option value="@item.Id">@item.Name</option>
                                 }
                             </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label">Expected Payment Expired Date</label>
+                            <input type="text" id="expectedPaymentExpDate" class="form-control" />
                         </div>
                         <div class="form-group">
                             <label class="col-form-label">Item Num.</label>
@@ -403,23 +411,23 @@
                         <div class="col-md-12">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="col-form-label">Net Price Total</label>
-                                    <div class="input-group">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-try"></i>
-                                        </div>
-                                        <input type="text" readonly="readonly" name="Date" class="form-control pull-right" id="txtGrandTotal">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-form-label">Net Over Invoice Total</label>
+                                    <label class="col-form-label"> Net Price Total</label> 
                                     <div class="input-group">
                                         <div class="input-group-addon">
                                             <i class="fa fa-try"></i>
                                         </div>
                                         <input type="text" readonly="readonly" name="Date" class="form-control pull-right" id="txtGrandTotal2">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-form-label"> Net Over Invoice Total</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-try"></i>
+                                        </div>
+                                        <input type="text" readonly="readonly" name="Date" class="form-control pull-right" id="txtGrandTotal">
                                     </div>
                                 </div>
                             </div>
@@ -477,6 +485,14 @@
                     //DateCount();
                 });
                 $("#goodsReqDate").datepicker({
+                    format: "yyyy-mm-dd",
+                    //DateCount();
+                });
+                $("#expectedPaymentDate").datepicker({
+                    format: "yyyy-mm-dd",
+                    //DateCount();
+                });
+                $("#expectedPaymentExpDate").datepicker({
                     format: "yyyy-mm-dd",
                     //DateCount();
                 });
@@ -546,6 +562,8 @@
                 var deliveryStatus = $("#deliveryStatus").val();
                 var deliveryDate = $("#deliveryDate").val();
                 var goodsReqDate = $("#goodsReqDate").val();
+                var expectedPaymentDate = $("#expectedPaymentDate").val();
+                var expectedPaymentExpDate = $("#expectedPaymentExpDate").val();
                 var itemNo = $("#itemNo").val();
                 var deliveryType = $("#deliveryType").val();
                 var buyer = $("#buyer").val();
@@ -579,6 +597,8 @@
                         "DeliveryStatus": deliveryStatus,
                         "DeliveryDate": deliveryDate,
                         "GoodsReqDate": goodsReqDate,
+                        "ExpectedPaymentDate": expectedPaymentDate,
+                        "ExpectedPaymentExpDate": expectedPaymentExpDate,
                         "ItemNo": itemNo,
                         "DeliveryType": deliveryType,
                         "Buyer": buyer,
@@ -651,7 +671,7 @@
                         LoadSessionData(productSIcode);
                         Clearproduct();
                         $('#dvLoader').hide();
-                        $('#productHide').hide();
+                        //$('#productHide').hide();
                     }
                 });
             });

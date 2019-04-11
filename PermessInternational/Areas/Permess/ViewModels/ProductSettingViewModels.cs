@@ -1,4 +1,5 @@
-﻿using PermessInternational.Areas.Permess.Models;
+﻿using PermessInternational.Areas.Global.Models;
+using PermessInternational.Areas.Permess.Models;
 using PermessInternational.Areas.Permess.PlainModels;
 using PermessInternational.Areas.Permess.StaticModels;
 using System;
@@ -34,5 +35,6 @@ namespace PermessInternational.Areas.Permess.ViewModels
         public IEnumerable<DeliveryType> DeliveryTypes { get;set;}
         public IEnumerable<PaymentClause> PaymentClauses { get;set;}
         public IEnumerable<Tenor> Tenors { get;set;}
+        public IEnumerable<SystemUser> SystemUser { get;set;}
     }
 }

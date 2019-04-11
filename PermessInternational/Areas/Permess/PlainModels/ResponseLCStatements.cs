@@ -15,5 +15,8 @@ namespace PermessInternational.Areas.Permess.PlainModels
         public string Party { get; set; }
         public DateTime ExpDate { get; set; }
         public string Bill { get; set; }
+        public DateTime ShipmentDate { get; set; }
+        public decimal Value { get; set; }
+        public decimal RealiseValue { get; set; }
     }
 }

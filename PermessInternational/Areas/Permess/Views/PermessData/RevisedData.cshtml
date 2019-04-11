@@ -30,12 +30,7 @@
                                     <th>Delivery Status</th>
                                     <th>Quantity Remaining</th>
                                     <th>Payment Method</th>
-                                    <th>Edit Document</th>
-                                    <th>Edit Product</th>
-                                    <th>Edit Quantity</th>
-                                    <th>Edit Cash</th>
-                                    <th>Edit L.C</th>
-                                    <th>Edit Order Detail</th>
+                                    <th>Revised History</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -62,37 +57,7 @@
                                             <td>@item.Quantity</td>
                                         }
                                         <td>@item.PaymentMethod</td>
-                                        <td><a href="@Url.Action("EditSIDocument","Sales",new {id=item.SICode })"><i class="fa fa-pencil"style="font-size:25px;"></i></a></td>
-                                        <td><a href="@Url.Action("EditSIProduct","Sales",new {id=item.SIProductId })"><i class="fa fa-pencil"style="font-size:25px;"></i></a></td>
-                                        @if (item.Quantity <= 0)
-                                        {
-                                            <td class="text-center"><a href="@Url.Action("DeliveryQuantities", "Sales", new { id = item.SIProductDetailsCode })"><i class="fa fa-pencil"style="font-size:25px;"></i></a></td>
-                                        }
-                                        else
-                                        {
-                                            <td class="text-center"><a href="@Url.Action("DeliveryQuantities", "Sales", new { id = item.SIProductDetailsCode })"><i class="fa fa-pencil"style="font-size:25px;"></i></a></td>
-                                        }
-
-                                        @if (item.PaymentMethod == "Cash" || item.PaymentMethod == "Cheque" || item.PaymentMethod == "TT Payment")
-                                        {
-                                            <td class="text-center"><a href="@Url.Action("EditCash", "Sales", new { id = item.SIDocumentCode })"><i class="fa fa-pencil" style="font-size:25px;"></i></a></td>
-                                            @*<td class="text-center"><a href="@Url.Action("AddCashDeails", "Sales", new { id = item.SIDocumentCode })"><i class="fa fa-eye" style="font-size:25px;"></i></a></td>*@
-                                        }
-                                        else
-                                        {
-                                            <td class="text-center">-</td>
-                                            <td class="text-center">-</td>
-                                        }
-
-                                        @if (item.PaymentMethod == "LC Payment")
-                                        {
-                                            <td class="text-center"><a href="@Url.Action("EditLCStatement","Sales",new { id=item.SIDocumentCode})"><i class="fa fa-pencil" style="font-size:25px;"></i></a></td>
-                                        }
-                                        else
-                                        {
-                                            <td class="text-center">-</td>
-                                        }
-                                        <td class="text-center"><a href="@Url.Action("EditOrderDetails","Sales",new { id=item.SIDocumentCode})"><i class="fa fa-pencil" style="font-size:25px;"></i></a></td>
+                                        <td><a href="@Url.Action("RevisedReport","PermessData",new { id=item.SICode})"><i class="fa fa-bar-chart" style="font-size:20px;"></i></a></td>
                                     </tr>
                                 }
                             </tbody>

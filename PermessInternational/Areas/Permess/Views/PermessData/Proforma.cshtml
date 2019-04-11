@@ -25,7 +25,7 @@
     <link href="~/Content/Site.css" rel="stylesheet" />
 </head>
 <body>
-    
+
     @{
         var widhth = "";
         var code = "";
@@ -59,9 +59,9 @@
         source = item.Source;
         widhth = item.Width;
         code = item.Code;
-        OrderQuantity = item.OrderQuantity;
+        OrderQuantity += item.OrderQuantity;
         UnitPrice = item.UnitPrice;
-        TotalPrice = item.Amount;
+        TotalPrice += item.Amount;
         color = item.Color;
 
     }
@@ -151,11 +151,20 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach (var item in Model.Product)
+                                {
+                                    <tr>
+                                        <td class="text-center"><b>@item.Product</b>, <b>Width: @item.Width</b><p>Article: @item.Article, Color: @item.Color</p></td>
+                                        <td class="text-center">@item.OrderQuantity</td>
+                                        <td class="text-right"><b>$ </b>@item.UnitPrice</td>
+                                        <td class="text-right"><b>$ </b>@item.Amount</td>
+                                    </tr>
+                                }
                                 <tr>
-                                    <td><b> @product</b>, <b>Width: @widhth</b>, <b>Construction: @construction</b>, <b>Article: @article</b>, <b>Color: @color</b> </td>
-                                    <td>@OrderQuantity</td>
-                                    <td>@UnitPrice</td>
-                                    <td>@TotalPrice</td>
+                                    <td class="text-center"><b>Total</b></td>
+                                    <td class="text-center">@OrderQuantity</td>
+                                    <td class="text-right"></td>
+                                    <td class="text-right"> <b>$ </b> @TotalPrice</td>
                                 </tr>
                             </tbody>
                         </table>

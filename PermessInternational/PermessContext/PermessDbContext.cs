@@ -33,5 +33,6 @@ namespace PermessInternational.PermessContext
         public DbSet<OrderDetails> OrderDetails { get; set; }
         public DbSet<ProductName> ProductNames { get; set; }
         public DbSet<DeliveryQuantity> DeliveryQuantities { get; set; }
+        public DbSet<PIRevised> PIReviseds { get; set; }
     }
 }

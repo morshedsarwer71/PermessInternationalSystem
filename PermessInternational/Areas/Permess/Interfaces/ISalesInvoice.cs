@@ -13,7 +13,7 @@ namespace PermessInternational.Areas.Permess.Interfaces
         void AddSIDocumentDetails(SIDocumentDetails sIDocument,int userId,int concernId);
         void UpdateSIDocumentDetails(SIDocumentDetails sIDocument,int userId,int concernId, string code);
         void AddSIProductDetails(SIProductDetails sIProductDetails, int userId, int concernId);
-        void UpdateSIProductDetails(SIProductDetails sIProductDetails, int userId, int concernId, string Code);
+        void UpdateSIProductDetails(SIProductDetails sIProductDetails, int userId, int concernId, int Code);
         IEnumerable<SISessionproductDetails> SISessionproductDetails(string code);
         IEnumerable<SISessionproductDetails> SRISessionproductDetails(string code);
         void ClearSalesProductById(int id);

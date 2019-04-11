@@ -1,14 +1,13 @@
-﻿@model PermessInternational.Areas.Permess.ViewModels.ResponseLCStatementsViewModels
+﻿@model PermessInternational.Areas.Permess.ViewModels.OrdersViewModels
 <section class="content-header">
     <h1>
-        L.C Statements
-        <small>preview of LC</small>
+        Revised Data
+        <small>preview of revised data</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
     </ol>
 </section>
-
 <!-- Main content -->
 <section class="content">
     <div class="row">
@@ -21,39 +20,24 @@
                             <thead>
                                 <tr>
                                     <th style="width: 10px">#</th>
-                                    <th>LC Number</th>
                                     <th>PI Code</th>
+                                    <th>Name</th>
                                     <th>Date</th>
-                                    <th>Value</th>
-                                    <th>Shipment Date</th>
-                                    <th>Expired Date</th>
-                                    <th>Party Name</th>
-                                    <th>Bank Name</th>
-                                    <th>Bank Submit Date</th>
-                                    <th>Realise Value</th>
-
+                                    <th>Time</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @{ var sl = 0;}
-                                @foreach (var item in Model.LCStatements)
+                                @foreach (var item in Model.PIReviseds)
                                 {
                                     sl++;
-
-                                <tr>
-                                    <td>@sl</td>
-                                    <td>@item.LcNumber</td>
-                                    <td>@item.SICode</td>
-                                    <td>@item.LCDate.ToShortDateString()</td>
-                                    <td>@item.Value</td>
-                                    <td>@item.ShipmentDate.ToShortDateString()</td>
-                                    <td>@item.ExpDate.ToShortDateString()</td>
-                                    <td>@item.Party</td>
-                                    <td>@item.BankName</td>
-                                    <td>@item.SubmitDate.ToShortDateString()</td>
-                                    <td>@item.RealiseValue</td>
-                                </tr>
-
+                                    <tr>
+                                        <td>@sl</td>
+                                        <td>@item.PICode</td>
+                                        <td>@item.UserId</td>
+                                        <td>@item.RevisedDate.ToShortDateString()</td>
+                                        <td>@item.Time</td>
+                                    </tr>
                                 }
                             </tbody>
                         </table>
@@ -70,9 +54,6 @@
                     </ul>
                 </div>
             </div>
-            <!-- /.box -->
         </div>
-        <!-- /.col -->
-
     </div>
 </section>

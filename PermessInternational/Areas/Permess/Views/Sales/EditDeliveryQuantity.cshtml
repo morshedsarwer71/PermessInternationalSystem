@@ -13,11 +13,7 @@
         <div class="box-body">
             <div class="col-md-6 col-sm-6">
                 @using (Html.BeginForm("EditDeliveryQuantity", "Sales", FormMethod.Post))
-                {
-                    <div class="form-group">
-                        <label class="col-form-label">P.I Code</label>
-                        <input value="@Model.ProductCode" readonly="readonly" name="ProductCode" type="text" class="form-control" />
-                    </div>
+                {                    
                     <div class="form-group">
                         <label class="col-form-label">Quntity</label>
                         <input name="Quantity" value="@Model.Quantity" type="text" class="form-control" />

@@ -263,22 +263,12 @@ namespace PermessInternational.Areas.Permess.Services
                 new PaymentMethod()
                 {
                     Id=1,
-                    Name="Cash"
-                },
-                new PaymentMethod()
-                {
-                    Id=2,
-                    Name="Cheque"
-                },                
+                    Name="Cash/Cheque/TT Payment"
+                },               
                 new PaymentMethod()
                 {
                     Id=3,
                     Name="LC Payment"
-                },
-                new PaymentMethod()
-                {
-                    Id=4,
-                    Name="TT Payment"
                 },
                 new PaymentMethod()
                 {

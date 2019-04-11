@@ -97,6 +97,14 @@
                         </select>
                     </div>
                     <div class="form-group">
+                        <label class="col-form-label">Document Submission Date</label>
+                        <input class="form-control" id="expiraionDate2" name="DocumentSubDate" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Document Exp Date</label>
+                        <input class="form-control" id="expiraionDate3" name="DocumentExpDate" />
+                    </div>
+                    <div class="form-group">
                         <label class="col-form-label">Description</label>
                         <textarea class="form-control" name="description"></textarea>
                     </div>
@@ -121,6 +129,12 @@
             $("#expiraionDate").datepicker({
                 format: "yyyy-mm-dd"
             });
+            $("#expiraionDate2").datepicker({
+                    format: "yyyy-mm-dd"
+                });
+            $("#expiraionDate3").datepicker({
+                    format: "yyyy-mm-dd"
+                });
             $("#lCDate").datepicker({
                 format: "yyyy-mm-dd"
             });

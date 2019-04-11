@@ -10,6 +10,7 @@ namespace PermessInternational.Areas.Permess.Models
     {
         [Key]
         public int SIProductDetId { get; set; }
+        public string SIProductDetailsCode { get; set; }
         public string SICode { get; set; }
         public string ProductCode { get; set; }
         public int ProductId { get; set; }

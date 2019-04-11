@@ -1,0 +1,128 @@
+﻿@model PermessInternational.Areas.Permess.ViewModels.ProductSettingViewModels
+<section class="content-header">
+    <h1>
+        Product Report
+        <small>preview of product report</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div id="dvLoader" class="LoadingDiv" style="display: none;">
+        <center>
+            <img src="~/Content/img/ajax-loader.gif" alt="Loading" />
+        </center>
+    </div>
+    <div class="row">
+        <div class="box">
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="col-md-12">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Product:</label>
+                            <div class="input-group date">
+                                <select class="form-control" id="productId">
+                                    <option value="0">All</option>
+                                    @foreach (var item in Model.Products)
+                                    {
+                                        <option value="@item.ProductId">@item.ProductName</option>
+                                    }
+                                </select>
+                            </div>
+                            <!-- /.input group -->
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" style="margin-top:25px;" id="btnView">View Report</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th style="width: 10px">#</th>
+                            <th>PI Code</th>
+                            <th>Issue Date</th>
+                            <th>Company Name</th>
+                            <th>Order Quantity</th>
+                            <th>Net Price</th>
+                            <th>Over Invoice</th>
+                            <th>Buyer Ref.</th>
+                            <th>Delivery Status</th>
+                            <th>Payment Day</th>
+                            <th>Quantity Remaining</th>
+                            <th>Payment Method</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tBody"></tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</section>
+@section scripts{
+    <script src="~/Content/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(function () {
+                $("#fromDate").datepicker({
+                    format: 'yyyy-mm-dd',
+                    autoclose:true
+                });
+                $("#toDate").datepicker({
+                    format: 'yyyy-mm-dd',
+                    autoclose:true
+                });
+            });
+            $('#btnView').click(function () {
+                var product = $('#productId').val();
+                $('#dvLoader').show();
+                $.ajax({
+                    url: "/PermessData/ProductReport",
+                    type: "POST",
+                    data: JSON.stringify({
+                        "productId": product,
+                    }),
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        //console.log(data);
+                        var result = data.ResponseOrders;
+                        var tr = "";
+                        var sl = 0;
+                        result.forEach(function (result) {
+                            sl++;
+                            tr += '<tr>';
+                            tr += '<td>' + sl + '</td>';
+                            tr += '<td>' + result.SICode + '</td>';
+                            tr += '<td>' + result.Date + '</td>';
+                            tr += '<td>' + result.Companyname + '</td>';
+                            tr += '<td>' + result.OrderQuantity + '</td>';
+                            tr += '<td>' + result.NetPrice + '</td>';
+                            tr += '<td>' + result.OverInvoice + '</td>';
+                            tr += '<td>' + result.BuyerRef + '</td>';
+                            tr += '<td>' + result.Delivery + '</td>';
+                            tr += '<td>' + result.PaymentDay + '</td>';
+                            tr += '<td>' + result.Quantity + '</td>';
+                            tr += '<td>' + result.PaymentMethod + '</td>';
+                            tr += '</tr>';
+                        });
+                        $("#tBody").html(tr);
+                        $('#dvLoader').hide();
+                    }
+                });
+            });
+        });
+
+    </script>
+
+}

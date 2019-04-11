@@ -170,6 +170,46 @@ namespace PermessInternational.Areas.Permess.Services
             return responses;
         }
 
+        public IEnumerable<ResponseOrders> ProductReport(int productId, int userId, int customerId)
+        {
+            List<ResponseOrders> responses = new List<ResponseOrders>();
+            using (var command = _context.Database.Connection.CreateCommand())
+            {
+                command.CommandText = "Permess_Report_Product @productId,@userId,@customer";
+                command.Parameters.Add(new SqlParameter("@productId", productId));
+                command.Parameters.Add(new SqlParameter("@userId", userId));
+                command.Parameters.Add(new SqlParameter("@customer", customerId));
+                _context.Database.Connection.Open();
+                using (var result = command.ExecuteReader())
+                {
+                    if (result.HasRows)
+                    {
+                        while (result.Read())
+                        {
+                            responses.Add(new ResponseOrders()
+                            {
+                                SICode = Convert.ToString(result[0]),
+                                Date = Convert.ToString(result[1]),
+                                Companyname = Convert.ToString(result[2]),
+                                OrderQuantity = Convert.ToDecimal(result[3]),
+                                NetPrice = Convert.ToDecimal(result[4]),
+                                OverInvoice = Convert.ToDecimal(result[5]),
+                                BuyerRef = Convert.ToString(result[6]),
+                                LC = Convert.ToString(result[7]),
+                                Delivery = Convert.ToString(result[8]),
+                                PaymentMethod = Convert.ToString(result[9]),
+                                Quantity = Convert.ToDecimal(result[10]),
+                                PaymentDay = Convert.ToInt32(result[11])
+
+                            });
+                        }
+                    }
+                }
+                _context.Database.Connection.Close();
+            }
+            return responses;
+        }
+
         public IEnumerable<ResponseStocks> RawMaterialsStocks()
         {
             List<ResponseStocks> responses = new List<ResponseStocks>();
@@ -296,6 +336,9 @@ namespace PermessInternational.Areas.Permess.Services
                                 SubmitDate = Convert.ToDateTime(result[4]),
                                 Party = Convert.ToString(result[5]),
                                 ExpDate = Convert.ToDateTime(result[6]),
+                                Value = Convert.ToDecimal(result[7]),
+                                RealiseValue = Convert.ToDecimal(result[8]),
+                                ShipmentDate = Convert.ToDateTime(result[9])
                             });
                         }
                 }
@@ -331,8 +374,11 @@ namespace PermessInternational.Areas.Permess.Services
                                 PaymentMethod= Convert.ToString(result[9]),
                                 SIDocumentCode= Convert.ToString(result[10]),
                                 SIProductCode= Convert.ToString(result[11]),
-                                Quantity= Convert.ToDecimal(result[12])
-                                
+                                Quantity= Convert.ToDecimal(result[12]),
+                                SIProductId= Convert.ToInt32(result[13]),
+                                SIProductDetailsCode = Convert.ToString(result[14]),
+                                PaymentDay = Convert.ToInt32(result[15])
+
                             });
                         }
                     }

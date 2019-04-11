@@ -10,10 +10,12 @@ namespace PermessInternational.Areas.Permess.Models
     {
         [Key]
         public int DeliveryQuantityID { get; set; }
+        public string SIProductDetailsCode { get; set; }
         public decimal Quantity { get; set; }
         public string ProductCode { get; set; }
         public int ConcernId { get; set; }
         public int Creator { get; set; }
+        public DateTime DeliveryDate { get; set; }
         public DateTime CreationDate { get; set; }
         public string Description { get; set; }
     }

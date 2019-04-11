@@ -24,6 +24,8 @@ namespace PermessInternational.Areas.Permess.Models
         public decimal Comission { get; set; }
         public string BankName { get; set; }
         public DateTime BankSubDate { get; set; }
+        public DateTime DocumentSubDate { get; set; }
+        public DateTime DocumentExpDate { get; set; }
         public string PartyName { get; set; }
         public int PaymentClause { get; set; }
         public string Description { get; set; }

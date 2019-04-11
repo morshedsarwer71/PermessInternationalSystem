@@ -28,6 +28,9 @@ namespace PermessInternational.Areas.Permess.PlainModels
         public string PaymentMethod { get; set; }
         public string SIDocumentCode { get; set; }
         public string SIProductCode { get; set; }
+        public int SIProductId { get; set; }
+        public int PaymentDay { get; set; }
+        public string SIProductDetailsCode { get; set; }
         public decimal Quantity { get; set; }
     }
 }

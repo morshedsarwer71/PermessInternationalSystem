@@ -22,5 +22,6 @@ namespace PermessInternational.Areas.Permess.Interfaces
         IEnumerable<ResponseOrders> OrdersReport(string fromDate,string toDate,int lcId,int deliveryId,int paymentMethodId,int companyId);
         IEnumerable<ResponseCashDetails> ResponseCashDetails();
         IEnumerable<ResponseLCStatements> ResponseLCStatements();
+        IEnumerable<ResponseOrders> ProductReport(int productId,int userId,int customerId);
     }
 }
